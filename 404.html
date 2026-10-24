@@ -53,6 +53,21 @@ li{margin:8px 0}
 li a{color:#7c3aed;font-size:14.5px;text-decoration:none;font-weight:500}
 li a:hover{text-decoration:underline}
 @media(max-width:600px){.card{padding:36px 22px}}
+/* site:start — κοινοί κανόνες όλων των σελίδων (site-pass.js) */
+.site-header a{border-bottom:none}
+@media(max-width:720px){
+  .site-header{position:static}
+  .header-inner{flex-direction:column;align-items:stretch;gap:8px;padding:10px 12px 8px}
+  .header-inner .logo{justify-content:center}
+  .nav-links{display:flex !important;flex-wrap:nowrap;justify-content:space-between;overflow-x:auto;scrollbar-width:none;gap:0}
+  .nav-links::-webkit-scrollbar{display:none}
+  .nav-links a{font-size:13px;padding:6px 9px;white-space:nowrap}
+}
+@media(max-width:480px){
+  .nav-links a[href="/contact.html"]{display:none}
+}
+#ezPrivacyCenter{bottom:14px !important;opacity:.75}
+/* site:end */
 </style>
 </head>
 <body>

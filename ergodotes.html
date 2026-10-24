@@ -18,12 +18,25 @@
 
   <meta name="description" content="Πόσο κοστίζει ένας εργαζόμενος το 2027: μικτός, καθαρός και κόστος εργοδότη από μικτό, από καθαρά ή από προϋπολογισμό, με γραφήματα, δώρα και ωριαίο κόστος." />
   <link rel="canonical" href="https://misthos2027.gr/ergodotes.html" />
-  <meta name="robots" content="index, follow" />
+<!-- seo:start -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="misthos2027.gr">
+<meta property="og:locale" content="el_GR">
+<meta property="og:title" content="Κόστος Εργοδότη 2027: Υπολογιστής Μισθού για Επιχειρήσεις">
+<meta property="og:description" content="Πόσο κοστίζει ένας εργαζόμενος το 2027: μικτός, καθαρός και κόστος εργοδότη από μικτό, από καθαρά ή από προϋπολογισμό, με γραφήματα, δώρα και ωριαίο κόστος.">
+<meta property="og:url" content="https://misthos2027.gr/ergodotes.html">
+<meta property="og:image" content="https://misthos2027.gr/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Υπολογισμός καθαρού μισθού 2027 στο misthos2027.gr">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Κόστος Εργοδότη 2027: Υπολογιστής Μισθού για Επιχειρήσεις">
+<meta name="twitter:description" content="Πόσο κοστίζει ένας εργαζόμενος το 2027: μικτός, καθαρός και κόστος εργοδότη από μικτό, από καθαρά ή από προϋπολογισμό, με γραφήματα, δώρα και ωριαίο κόστος.">
+<meta name="twitter:image" content="https://misthos2027.gr/og-image.jpg">
+<script type="application/ld+json" data-ld="breadcrumb">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Αρχική","item":"https://misthos2027.gr/"},{"@type":"ListItem","position":2,"name":"Κόστος Εργοδότη 2027","item":"https://misthos2027.gr/ergodotes.html"}]}</script>
+<!-- seo:end -->
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
 
-  <meta property="og:title" content="Κόστος Εργοδότη 2027: Υπολογιστής Μισθού για Επιχειρήσεις" />
-  <meta property="og:description" content="Μικτός, καθαρός και κόστος εργοδότη με γραφήματα, για κάθε μισθό." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://misthos2027.gr/ergodotes.html" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -702,6 +715,79 @@
       font-weight:900;
     }
 
+    /* Εφέ υπολογισμού: κύμα στο κουμπί, γραμμές που μπαίνουν διαδοχικά, σύνολα που μετρούν */
+    #calcBtn{
+      position:relative;
+      overflow:hidden;
+    }
+
+    #calcBtn .ripple{
+      position:absolute;
+      border-radius:50%;
+      background:rgba(255,255,255,.45);
+      transform:scale(0);
+      animation:ripple .6s ease-out forwards;
+      pointer-events:none;
+    }
+
+    @keyframes ripple{
+      to{ transform:scale(4); opacity:0; }
+    }
+
+    #results.reveal .result,
+    #results.reveal .subsection-title,
+    #results.reveal .note{
+      animation:rowIn .45s cubic-bezier(.2,.7,.2,1) both;
+      animation-delay:var(--d, 0ms);
+    }
+
+    @keyframes rowIn{
+      from{ opacity:0; transform:translateY(10px); }
+      to{ opacity:1; transform:none; }
+    }
+
+    #results .result.total{
+      --glow:16,185,129;
+    }
+
+    /* Ο καθαρός (ή ο μικτός στον αντίστροφο) είναι το κύριο νούμερο της σελίδας */
+    #results > .result.total{
+      padding:16px 18px;
+    }
+
+    #results > .result.total .val{
+      font-size:24px;
+      letter-spacing:-.5px;
+    }
+
+    @media(max-width:768px){
+      #results > .result.total .val{
+        font-size:21px;
+      }
+    }
+
+    #results .result.total.gross-total{
+      --glow:99,102,241;
+    }
+
+    #results .result.total.glow{
+      animation:glow 1s ease-out;
+    }
+
+    @keyframes glow{
+      0%{ box-shadow:0 0 0 0 rgba(var(--glow),.55); transform:scale(1.025); }
+      100%{ box-shadow:0 0 0 16px rgba(var(--glow),0); transform:scale(1); }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      #results.reveal .result,
+      #results.reveal .subsection-title,
+      #results.reveal .note,
+      #results .result.total.glow{
+        animation:none;
+      }
+    }
+
     /* Οι τίτλοι στην αρχή κάθε ομάδας πεδίων κρατούν το κενό από το πεδίο από πάνω */
     #directionWrap,
     #publicFields > label:first-of-type,
@@ -1009,16 +1095,56 @@
       }
     }
 
+    /* Στο κινητό η κεφαλίδα δεν μένει καρφωμένη πάνω: αφήνει όλη την οθόνη στον υπολογιστή */
+    @media(max-width:768px){
+      header{
+        position:static;
+      }
+    }
+
     @media(max-width:480px){
       .topbar{
         flex-direction:column;
         align-items:stretch;
+        gap:8px;
+        padding:10px 12px 8px;
       }
 
       .brand{
         justify-content:center;
       }
+
+      nav{
+        flex-wrap:nowrap;
+        justify-content:space-between;
+        overflow-x:auto;
+        scrollbar-width:none;
+        gap:0;
+      }
+
+      nav a{
+        font-size:13px;
+        padding:6px 9px;
+      }
+
+      /* Η επικοινωνία είναι στο υποσέλιδο· στη στενή οθόνη το μενού χωράει σε μία γραμμή */
+      nav a[href="/contact.html"]{
+        display:none;
+      }
+
+      .hero{
+        padding:18px 14px 6px;
+      }
+
+      h1.hero-title{
+        margin-bottom:8px;
+      }
+
+      .hero-sub{
+        font-size:13.5px;
+      }
     }
+  
     /* ── Σελίδα εργοδοτών: κάρτες, γραφήματα, πίνακας ── */
     .viz-root{
       --series-1:#2a78d6;
@@ -1221,6 +1347,37 @@
       }
     }
 
+    /* Μικρό «χτύπημα» στις κάρτες όταν τελειώσει το μέτρημα */
+    .kpi.pop{
+      animation:kpiPop .6s ease-out;
+    }
+
+    @keyframes kpiPop{
+      0%{ transform:scale(1.04); box-shadow:0 0 0 0 rgba(99,102,241,.45); }
+      100%{ transform:scale(1); box-shadow:0 0 0 12px rgba(99,102,241,0); }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .kpi.pop{
+        animation:none;
+      }
+    }
+
+  /* site:start — κοινοί κανόνες όλων των σελίδων (site-pass.js) */
+.site-header a{border-bottom:none}
+@media(max-width:720px){
+  .site-header{position:static}
+  .header-inner{flex-direction:column;align-items:stretch;gap:8px;padding:10px 12px 8px}
+  .header-inner .logo{justify-content:center}
+  .nav-links{display:flex !important;flex-wrap:nowrap;justify-content:space-between;overflow-x:auto;scrollbar-width:none;gap:0}
+  .nav-links::-webkit-scrollbar{display:none}
+  .nav-links a{font-size:13px;padding:6px 9px;white-space:nowrap}
+}
+@media(max-width:480px){
+  .nav-links a[href="/contact.html"]{display:none}
+}
+#ezPrivacyCenter{bottom:14px !important;opacity:.75}
+/* site:end */
   </style>
 </head>
 
@@ -1239,7 +1396,7 @@
         <a href="/">Υπολογιστής</a>
         <a href="/ergodotes.html">Εργοδότες</a>
         <a href="/articles/">Άρθρα</a>
-        <a href="/about.html">About</a>
+        <a href="/about.html">Σχετικά</a>
         <a href="/contact.html">Επικοινωνία</a>
       </nav>
     </div>
@@ -1247,8 +1404,9 @@
 
   <section class="hero">
     <h1 class="hero-title">
-      Πόσο <span class="grad">κοστίζει</span> ένας εργαζόμενος
+      Κόστος <span class="grad">εργοδότη</span> 2027
     </h1>
+    <p class="hero-sub">Πόσο κοστίζει ένας εργαζόμενος: μικτός, καθαρός, εισφορές εργοδότη, δώρα και κόστος ανά ώρα, με γραφήματα.</p>
   </section>
 
   <main>
@@ -1262,10 +1420,10 @@
           <h2>Στοιχεία θέσης</h2>
         </div>
 
-        <div id="modeSeg" class="seg seg-3" role="group" aria-label="Τι ξέρω">
-          <button type="button" data-value="gross" class="on" aria-pressed="true">Μικτό μισθό</button>
-          <button type="button" data-value="net" aria-pressed="false">Καθαρά που θέλει</button>
-          <button type="button" data-value="budget" aria-pressed="false">Προϋπολογισμό</button>
+        <div id="modeSeg" class="seg seg-3" role="group" aria-label="Υπολογισμός από">
+          <button type="button" data-value="gross" class="on" aria-pressed="true" title="Ξεκινάω από τον μικτό μισθό">Μικτός μισθός</button>
+          <button type="button" data-value="net" aria-pressed="false" title="Ξεκινάω από τα καθαρά που θέλει ο εργαζόμενος">Καθαρός μισθός</button>
+          <button type="button" data-value="budget" aria-pressed="false" title="Ξεκινάω από το συνολικό κόστος που αντέχει η επιχείρηση">Συνολικό κόστος</button>
         </div>
 
         <div id="amountWrap">
@@ -1922,7 +2080,57 @@
       });
     });
 
-    document.getElementById('calcBtn').addEventListener('click', calc);
+    // Το ποσό όπως το γράφει η euro(): «€ 1.164,78» → 1164.78
+    const parseEuro = s => Number(String(s).replace(/[^\d,.-]/g, '').replace(/\./g, '').replace(',', '.')) || 0;
+
+    let countRun = 0;
+
+    // Τα τέσσερα κύρια νούμερα ανεβαίνουν από το 0 σε ένα δευτερόλεπτο.
+    function countUp(ids){
+      if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      const run = ++countRun;
+      const items = ids.map(id => {
+        const el = document.getElementById(id);
+        return { el, text: el.textContent, target: parseEuro(el.textContent) };
+      });
+      const t0 = performance.now();
+      const step = now => {
+        if(run !== countRun) return;
+        const t = Math.min((now - t0) / 1000, 1);
+        const eased = 1 - Math.pow(1 - t, 3);
+        items.forEach(i => { i.el.textContent = t < 1 ? euro(i.target * eased) : i.text; });
+        if(t < 1) return requestAnimationFrame(step);
+        document.querySelectorAll('.kpi').forEach(k => {
+          k.classList.remove('pop');
+          void k.offsetWidth;
+          k.classList.add('pop');
+        });
+      };
+      requestAnimationFrame(step);
+    }
+
+    function ripple(btn, e){
+      const rect = btn.getBoundingClientRect();
+      const size = Math.max(rect.width, rect.height);
+      const dot = document.createElement('span');
+      dot.className = 'ripple';
+      dot.style.width = dot.style.height = size + 'px';
+      dot.style.left = ((e.clientX || rect.left + rect.width / 2) - rect.left - size / 2) + 'px';
+      dot.style.top = ((e.clientY || rect.top + rect.height / 2) - rect.top - size / 2) + 'px';
+      btn.appendChild(dot);
+      setTimeout(() => dot.remove(), 650);
+    }
+
+    document.getElementById('calcBtn').addEventListener('click', function(e){
+      ripple(this, e);
+      calc();
+
+      // Στο κινητό τα νούμερα είναι κάτω από τη φόρμα: πάμε εκεί για να φανεί το μέτρημα.
+      const kpis = document.querySelector('.kpis');
+      const top = kpis.getBoundingClientRect().top;
+      if(top > window.innerHeight * 0.55 || top < 0) kpis.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      countUp(['kGross', 'kNet', 'kCost', 'kYear']);
+    });
     document.getElementById('amount').addEventListener('keydown', e => { if(e.key === 'Enter') calc(); });
 
     document.getElementById('resetBtn').addEventListener('click', () => {
