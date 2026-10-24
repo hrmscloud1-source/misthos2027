@@ -691,14 +691,19 @@
     }
 
     .seg button.on{
-      background:#fff;
-      color:var(--pri-dark);
-      border-color:rgba(99,102,241,.25);
-      box-shadow:0 2px 8px rgba(15,23,42,.08);
+      background:linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+      color:#fff;
+      border-color:transparent;
+      box-shadow:0 4px 12px -2px rgba(79,70,229,.45);
+    }
+
+    .seg button.on::before{
+      content:"✓ ";
+      font-weight:900;
     }
 
     /* Οι τίτλοι στην αρχή κάθε ομάδας πεδίων κρατούν το κενό από το πεδίο από πάνω */
-    #directionWrap > label,
+    #directionWrap,
     #publicFields > label:first-of-type,
     #amountWrap > label,
     #privateFields > label:first-of-type{
@@ -1055,14 +1060,12 @@
           <h2>Στοιχεία μισθού</h2>
         </div>
 
-        <label>Εργάζομαι στον</label>
         <div id="sectorSeg" class="seg" role="group" aria-label="Τομέας">
           <button type="button" data-value="private" class="on" aria-pressed="true">Ιδιωτικό τομέα</button>
           <button type="button" data-value="public" aria-pressed="false">Δημόσιο</button>
         </div>
 
         <div id="directionWrap">
-          <label>Ξέρω τον</label>
           <div id="directionSeg" class="seg" role="group" aria-label="Κατεύθυνση υπολογισμού">
             <button type="button" data-value="gross" class="on" aria-pressed="true">Μικτό → βγάλε καθαρό</button>
             <button type="button" data-value="net" aria-pressed="false">Καθαρό → βγάλε μικτό</button>
