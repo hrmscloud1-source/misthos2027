@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>Υπολογισμός Καθαρού Μισθού — Ελλάδα (2026)</title>
+  <title>Υπολογισμός Καθαρού Μισθού 2027 — Ιδιωτικός &amp; Δημόσιος Τομέας</title>
 
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
@@ -15,12 +15,12 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180.png" />
   <meta name="theme-color" content="#6366f1" />
 
-  <meta name="description" content="Δωρεάν online εργαλείο για υπολογισμό καθαρού μισθού στην Ελλάδα (2026). Υπολογίζει εισφορές, φόρο, καθαρά και κόστος εργοδότη." />
+  <meta name="description" content="Υπολογισμός καθαρού μισθού 2027 για ιδιωτικούς και δημοσίους υπαλλήλους: εισφορές, φόρος, ενιαίο μισθολόγιο και αντίστροφα από καθαρά σε μικτά. Με τις αλλαγές του 2027." />
   <link rel="canonical" href="https://misthos2027.gr/" />
   <meta name="robots" content="index, follow" />
 
-  <meta property="og:title" content="Υπολογισμός Καθαρού Μισθού — Ελλάδα (2026)" />
-  <meta property="og:description" content="Υπολογισμός καθαρού μισθού, ΕΦΚΑ και φόρου για Ελλάδα." />
+  <meta property="og:title" content="Υπολογισμός Καθαρού Μισθού 2027 — Ιδιωτικός &amp; Δημόσιος Τομέας" />
+  <meta property="og:description" content="Καθαρά από μικτά και μικτά από καθαρά, για ιδιωτικό τομέα και Δημόσιο, με τις αλλαγές του 2027." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://misthos2027.gr/" />
 
@@ -575,6 +575,88 @@
       border:1px solid rgba(99,102,241,.18);
     }
 
+    /* Επιλογή δύο τιμών (τομέας, κατεύθυνση υπολογισμού) */
+    .seg{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:4px;
+      padding:4px;
+      background:#f1f5f9;
+      border:1px solid var(--line);
+      border-radius:12px;
+    }
+
+    .seg button{
+      padding:10px 8px;
+      border-radius:9px;
+      background:transparent;
+      color:var(--mut);
+      font-size:13px;
+      font-weight:700;
+      line-height:1.25;
+    }
+
+    .seg button:hover{
+      color:var(--ink-2);
+    }
+
+    .seg button.on{
+      background:#fff;
+      color:var(--pri-dark);
+      border-color:rgba(99,102,241,.25);
+      box-shadow:0 2px 8px rgba(15,23,42,.08);
+    }
+
+    /* Οι τίτλοι στην αρχή κάθε ομάδας πεδίων κρατούν το κενό από το πεδίο από πάνω */
+    #directionWrap > label,
+    #publicFields > label:first-of-type,
+    #amountWrap > label,
+    #privateFields > label:first-of-type{
+      margin-top:14px;
+    }
+
+    .help + .row{
+      margin-top:14px;
+    }
+
+    .result.sub{
+      padding:6px 0 6px 10px;
+      font-size:12.5px;
+      color:var(--mut);
+    }
+
+    .result.sub > div:first-child{
+      color:var(--mut);
+    }
+
+    .result.sub .val{
+      font-weight:600;
+      color:var(--ink-2);
+    }
+
+    .result.total.gross-total{
+      background:linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
+      border-color:rgba(99,102,241,.3);
+      box-shadow:0 4px 14px -4px rgba(99,102,241,.25);
+      margin-top:0;
+    }
+
+    .result.total.gross-total > div:first-child,
+    .result.total.gross-total .val{
+      color:var(--pri-dark);
+    }
+
+    .note{
+      margin:8px 0 4px;
+      padding:10px 12px;
+      font-size:12px;
+      line-height:1.5;
+      color:var(--ink-2);
+      background:rgba(99,102,241,.05);
+      border:1px solid rgba(99,102,241,.14);
+      border-radius:10px;
+    }
+
     .subsection-title{
       margin:22px 0 4px;
       font-size:11px;
@@ -874,28 +956,94 @@
           <h2>Στοιχεία μισθού</h2>
         </div>
 
-        <label for="gross">Μικτός Μηνιαίος Μισθός (€)</label>
-        <input id="gross" type="number" min="0" step="0.01" placeholder="π.χ. 1.200" inputmode="decimal" />
+        <label>Εργάζομαι στον</label>
+        <div id="sectorSeg" class="seg" role="group" aria-label="Τομέας">
+          <button type="button" data-value="private" class="on" aria-pressed="true">Ιδιωτικό τομέα</button>
+          <button type="button" data-value="public" aria-pressed="false">Δημόσιο</button>
+        </div>
 
-        <div class="row">
-          <div>
-            <label for="payMonths">Μισθοί ανά έτος</label>
-            <select id="payMonths">
-              <option value="14">14 </option>
-              <option value="12">12</option>
+        <div id="directionWrap">
+          <label>Ξέρω τον</label>
+          <div id="directionSeg" class="seg" role="group" aria-label="Κατεύθυνση υπολογισμού">
+            <button type="button" data-value="gross" class="on" aria-pressed="true">Μικτό → βγάλε καθαρό</button>
+            <button type="button" data-value="net" aria-pressed="false">Καθαρό → βγάλε μικτό</button>
+          </div>
+        </div>
+
+        <div id="publicFields" style="display:none;">
+          <label for="publicMode">Μισθολόγιο</label>
+          <select id="publicMode">
+            <option value="unified" selected>Ενιαίο μισθολόγιο (ν. 4354/2015)</option>
+            <option value="special">Ειδικό μισθολόγιο / άλλο: δίνω το ποσό</option>
+          </select>
+          <div class="help">Ενιαίο: διοικητικοί, εκπαιδευτικοί, ΟΤΑ, νοσηλευτές κ.ά. Ειδικά μισθολόγια: ένστολοι, γιατροί ΕΣΥ, δικαστικοί, ΔΕΠ.</div>
+
+          <div id="unifiedFields">
+            <div class="row">
+              <div>
+                <label for="publicCat">Κατηγορία</label>
+                <select id="publicCat">
+                  <option value="PE" selected>ΠΕ (πανεπιστημιακή)</option>
+                  <option value="TE">ΤΕ (τεχνολογική)</option>
+                  <option value="DE">ΔΕ (δευτεροβάθμια)</option>
+                  <option value="YE">ΥΕ (υποχρεωτική)</option>
+                </select>
+              </div>
+              <div>
+                <label for="publicMk">Μισθολογικό κλιμάκιο</label>
+                <select id="publicMk"></select>
+              </div>
+            </div>
+            <div class="help">Τα έτη μετρούν από τον διορισμό. Μεταπτυχιακό: +2 έτη, διδακτορικό: +6 έτη.</div>
+
+            <label for="publicPosition">Θέση ευθύνης</label>
+            <select id="publicPosition">
+              <option value="0" selected>Καμία</option>
+              <option value="290">Προϊστάμενος Τμήματος (290 €)</option>
+              <option value="350">Προϊστάμενος Υποδιεύθυνσης (350 €)</option>
+              <option value="450">Προϊστάμενος Διεύθυνσης (450 €)</option>
+              <option value="1000">Προϊστάμενος Γενικής Διεύθυνσης (1.000 €)</option>
+              <option value="150">Υποδιευθυντής σχολείου (150 €)</option>
+              <option value="165">Προϊστάμενος ολιγοθέσιου σχολείου / νηπιαγωγείου (165 €)</option>
+              <option value="275">Διευθυντής Γυμνασίου (275 €)</option>
+              <option value="330">Διευθυντής Λυκείου (330 €)</option>
             </select>
+
+            <label for="publicOther">Άλλα μηνιαία επιδόματα (€)</label>
+            <input id="publicOther" type="number" min="0" step="0.01" placeholder="π.χ. προσωπική διαφορά" inputmode="decimal" />
+
+            <label class="checkbox-row">
+              <input id="publicFamily" type="checkbox" checked />
+              <span><strong>Οικογενειακή παροχή</strong> για τα παιδιά (70 € για ένα, 120 € για δύο, 170 € για τρία)</span>
+            </label>
           </div>
 
+          <label class="checkbox-row">
+            <input id="publicMtpy" type="checkbox" checked />
+            <span><strong>Μέτοχος ΜΤΠΥ</strong>: κράτηση 4,5% (δεν ισχύει σε όλους τους φορείς, π.χ. ΟΤΑ)</span>
+          </label>
+
+          <label class="checkbox-row" id="xmasWrap">
+            <input id="publicXmas" type="checkbox" checked />
+            <span><strong>Επίδομα Χριστουγέννων 500 €</strong> τον Δεκέμβριο 2027 (προσχέδιο προϋπολογισμού)</span>
+          </label>
+        </div>
+
+        <div id="amountWrap">
+          <label for="gross" id="amountLabel">Μικτός μηνιαίος μισθός (€)</label>
+          <input id="gross" type="number" min="0" step="0.01" placeholder="π.χ. 1.200" inputmode="decimal" />
+        </div>
+
+        <div class="row">
           <div>
             <label for="taxYear">Φορολογικό έτος</label>
             <select id="taxYear">
               <option value="2025">2025</option>
-              <option value="2026" selected>2026</option>
+              <option value="2026">2026</option>
+              <option value="2027" selected>2027</option>
             </select>
           </div>
-        </div>
 
-        <div class="row">
           <div>
             <label for="children">Εξαρτώμενα τέκνα</label>
             <select id="children">
@@ -912,7 +1060,9 @@
               <option>10</option>
             </select>
           </div>
+        </div>
 
+        <div class="row">
           <div>
             <label for="ageBand">Ηλικία εργαζομένου</label>
             <select id="ageBand">
@@ -920,10 +1070,19 @@
               <option value="26-30">25–30</option>
               <option value="31+" selected>30+</option>
             </select>
-            <div class="help">Αφορά την ηλικία σας την 01/01/2026.</div>
+            <div class="help" id="ageHelp">Αφορά την ηλικία σας την 01/01/2027.</div>
+          </div>
+
+          <div id="payMonthsWrap">
+            <label for="payMonths">Μισθοί ανά έτος</label>
+            <select id="payMonths">
+              <option value="14">14</option>
+              <option value="12">12</option>
+            </select>
           </div>
         </div>
 
+        <div id="privateFields">
         <label for="role">Ειδικότητα</label>
         <select id="role">
           <option value="office" selected>Υπάλληλος γραφείου</option>
@@ -965,13 +1124,15 @@
 
           <label for="efkaCap">Μηνιαίο πλαφόν ασφαλιστέων (€)</label>
           <input id="efkaCap" type="number" step="0.01" min="0" value="7761.94" />
+          <div class="help">Για το 2027 η εισφορά του εργαζομένου μειώνεται αυτόματα κατά 0,5 μονάδα από 1/4/2027.</div>
         </details>
+        </div>
 
         <div class="foot">
           <button id="resetBtn" class="btn secondary" type="button">Επαναφορά</button>
           <button id="calcBtn" class="btn" type="button">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            Υπολογισμός καθαρού μισθού
+            <span id="calcBtnText">Υπολογισμός καθαρού μισθού</span>
           </button>
         </div>
 
@@ -986,7 +1147,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 16l4-4 4 4 5-7"/></svg>
           </span>
           <h2>Αποτελέσματα</h2>
-          <span id="badge" class="pill">Έτος: 2026</span>
+          <span id="badge" class="pill">Έτος: 2027</span>
         </div>
         <div id="results"></div>
       </section>
@@ -1006,6 +1167,9 @@
         <ul>
           <li><a href="/">Υπολογιστής</a></li>
           <li><a href="/articles/">Άρθρα & οδηγοί</a></li>
+          <li><a href="/articles/allages-2027-foros-eisfores.html">Αλλαγές 2027</a></li>
+          <li><a href="/articles/misthos-dimosion-ypallilon-2027.html">Μισθός Δημοσίου 2027</a></li>
+          <li><a href="/articles/katotatos-misthos-2027.html">Κατώτατος μισθός 2027</a></li>
         </ul>
       </div>
 
@@ -1051,6 +1215,8 @@
       return tax;
     }
 
+    // Κλίμακα 2026 (ν. 5246/2025): συντελεστές ανά ηλικία και τέκνα.
+    // Με 4 ή περισσότερα τέκνα και τα δύο πρώτα κλιμάκια είναι 0%.
     function rates2026(ageBand, children){
       const r = [0,0,0,0,0,0];
       const isLe25 = ageBand === '<=25';
@@ -1062,7 +1228,7 @@
         children === 2 ? 0.16 :
         children === 1 ? 0.18 : 0.20;
 
-      r[0] = isLe25 ? 0 : 0.09;
+      r[0] = (isLe25 || children >= 4) ? 0 : 0.09;
 
       if(isLe25){
         r[1] = 0;
@@ -1086,9 +1252,19 @@
       return r;
     }
 
-    function annualTax2026(income, ageBand, children){
+    // Κλίμακα 2027 (μέτρα ΔΕΘ 2026, προσχέδιο προϋπολογισμού 2027):
+    // ίδια με το 2026, αλλά οι τρίτεκνοι έχουν 0% στα πρώτα 20.000 €.
+    function rates2027(ageBand, children){
+      const r = rates2026(ageBand, children);
+      if(children === 3){
+        r[0] = 0;
+        r[1] = 0;
+      }
+      return r;
+    }
+
+    function annualTaxByRates(income, rates){
       const bounds = [0,10000,20000,30000,40000,60000,Infinity];
-      const rates = rates2026(ageBand, children);
       let tax = 0;
 
       for(let i = 0; i < 6; i++){
@@ -1098,6 +1274,12 @@
       }
 
       return tax;
+    }
+
+    function annualTax(year, income, ageBand, children){
+      if(year === 2025) return annualTax2025(income);
+      const rates = year === 2027 ? rates2027(ageBand, children) : rates2026(ageBand, children);
+      return annualTaxByRates(income, rates);
     }
 
     function taxCredit(children, taxableAnnual){
@@ -1110,26 +1292,342 @@
       return r2(Math.max(0, base - reduction));
     }
 
-    function zeroResults(){
-      const res = document.getElementById('results');
-      res.innerHTML = `
-        <div class="result"><div>Εισφορές εργαζομένου</div><div class="val">€ 0,00</div></div>
-        <div class="result"><div>Παρακρατούμενος φόρος</div><div class="val">€ 0,00</div></div>
-        <div class="result total"><div>Καθαρός μηνιαίος</div><div class="val">€ 0,00</div></div>
+    // Φόρος ενός έτους: κλίμακα μείον έκπτωση φόρου (άρθρα 15-16 ΚΦΕ).
+    function taxFor(year, taxable, ageBand, children){
+      const before = annualTax(year, taxable, ageBand, children);
+      const credit = taxCredit(children, taxable);
+      return { before, credit, tax: r2(Math.max(0, before - credit)) };
+    }
 
+    // Από 1/4/2027 η εισφορά ανεργίας (ΔΥΠΑ) του εργαζομένου πέφτει από 1,20% σε 0,70%
+    // (σχέδιο νόμου ΥΠΕΘΟΟ, άρθρο 20 · προσχέδιο προϋπολογισμού 2027). Ιανουάριος-Μάρτιος με τον παλιό.
+    const DYPA_CUT_2027 = 0.005;
+    const MONTHS_BEFORE_CUT_2027 = 3;
+
+    // Σταθερά μηνιαία ποσά εισφορών μηχανικών ανά ασφαλιστική κλάση
+    // (e-ΕΦΚΑ εγκύκλιος 4/2026, ισχύς από 01/01/2026)
+    const ENGINEER_CLASS_AMOUNTS = {
+      1: { epikouriki: 46.57, pronoia: 31.05 },
+      2: { epikouriki: 56.13, pronoia: 37.02 },
+      3: { epikouriki: 66.88, pronoia: 44.18 }
+    };
+
+    // Ενιαίο μισθολόγιο ν. 4354/2015: βασικοί μισθοί από 1/4/2026
+    // (εγκ. 54692 ΕΞ/03-04-2026, +40 € σε κάθε κλιμάκιο).
+    const PUBLIC_SCALES = {
+      PE: { label: 'ΠΕ', start: 1232, step: 59, count: 19, years: 2 },
+      TE: { label: 'ΤΕ', start: 1177, step: 55, count: 19, years: 2 },
+      DE: { label: 'ΔΕ', start: 998, step: 60, count: 13, years: 3 },
+      YE: { label: 'ΥΕ', start: 920, step: 43, count: 13, years: 3 }
+    };
+
+    // Κρατήσεις μονίμων δημοσίων υπαλλήλων 2026 (σύνολο 22,22%, χωρίς ΜΤΠΥ 17,72%).
+    const PUBLIC_DEDUCTIONS = [
+      { key: 'tpdy', label: 'ΤΠΔΥ (εφάπαξ)', rate: 0.04 },
+      { key: 'mtpy', label: 'ΜΤΠΥ (μετοχικό)', rate: 0.045 },
+      { key: 'teady', label: 'ΤΕΑΔΥ (επικουρική)', rate: 0.03 },
+      { key: 'health', label: 'Υγειονομική περίθαλψη', rate: 0.0205 },
+      { key: 'efka', label: 'ΕΦΚΑ κύρια σύνταξη', rate: 0.0667 },
+      { key: 'solidarity', label: 'Εισφορά αλληλεγγύης (ανεργία)', rate: 0.02 }
+    ];
+
+    // Νέο μόνιμο επίδομα Χριστουγέννων στο Δημόσιο, Δεκέμβριος 2027 (προσχέδιο προϋπολογισμού 2027).
+    const PUBLIC_XMAS_2027 = 500;
+
+    function publicBase(cat, mk){
+      const s = PUBLIC_SCALES[cat] || PUBLIC_SCALES.PE;
+      const k = Math.min(Math.max(1, mk), s.count);
+      return s.start + s.step * (k - 1);
+    }
+
+    // Οικογενειακή παροχή (άρθρο 15 ν. 4354/2015): 70 / 120 / 170 / 220 € και +70 € για κάθε επιπλέον τέκνο.
+    function familyAllowance(children){
+      if(children <= 0) return 0;
+      return 70 + 50 * Math.min(children - 1, 3) + 70 * Math.max(0, children - 4);
+    }
+
+    function readInputs(){
+      const val = id => document.getElementById(id).value;
+      return {
+        sector: document.querySelector('#sectorSeg .on').dataset.value,
+        direction: document.querySelector('#directionSeg .on').dataset.value,
+        amount: n(val('gross')),
+        payMonths: n(val('payMonths'), 14),
+        year: n(val('taxYear'), 2027),
+        children: n(val('children'), 0),
+        ageBand: val('ageBand'),
+        role: val('role'),
+        engClass: n(val('engClass'), 1),
+        repat: document.getElementById('repat').checked,
+        empRate: n(val('efkaEmployee'), 0.1337),
+        employerRate: n(val('efkaEmployer'), 0.2179),
+        cap: n(val('efkaCap'), 7761.94),
+        publicMode: val('publicMode'),
+        cat: val('publicCat'),
+        mk: n(val('publicMk'), 1),
+        position: n(val('publicPosition'), 0),
+        familyOn: document.getElementById('publicFamily').checked,
+        otherAllowances: n(val('publicOther'), 0),
+        mtpy: document.getElementById('publicMtpy').checked,
+        xmasBonus: document.getElementById('publicXmas').checked
+      };
+    }
+
+    function computePrivate(p, gross){
+      let empRate = p.empRate;
+      if(p.role === 'seller') empRate += 0.04;
+
+      const cut = p.year === 2027 ? DYPA_CUT_2027 : 0;
+      const insured = Math.min(gross, p.cap);
+      let empMonthly = r2(insured * (empRate - cut));
+      let empMonthlyBeforeCut = r2(insured * empRate);
+      let employerMonthly = r2(insured * p.employerRate);
+
+      // Επιπλέον εισφορές μηχανικών — Επικουρική + Πρόνοια (e-ΕΦΚΑ εγκ. 4/2026)
+      let engEpikourikiEmp = 0;
+      let engEpikourikiErg = 0;
+      let engPronoia = 0;
+      if(p.role === 'engineer'){
+        const amounts = ENGINEER_CLASS_AMOUNTS[p.engClass] || ENGINEER_CLASS_AMOUNTS[1];
+        // Επικουρική: 50% εργαζόμενος / 50% εργοδότης
+        engEpikourikiEmp = r2(amounts.epikouriki / 2);
+        engEpikourikiErg = r2(amounts.epikouriki / 2);
+        // Πρόνοια: όλο τον ασφαλισμένο
+        engPronoia = r2(amounts.pronoia);
+
+        empMonthly = r2(empMonthly + engEpikourikiEmp + engPronoia);
+        empMonthlyBeforeCut = r2(empMonthlyBeforeCut + engEpikourikiEmp + engPronoia);
+        employerMonthly = r2(employerMonthly + engEpikourikiErg);
+      }
+
+      const annualGross = r2(gross * p.payMonths);
+      const annualContrib = cut
+        ? r2(empMonthlyBeforeCut * MONTHS_BEFORE_CUT_2027 + empMonthly * (p.payMonths - MONTHS_BEFORE_CUT_2027))
+        : r2(empMonthly * p.payMonths);
+      const taxableAnnual = r2(annualGross - annualContrib);
+      const taxableForTax = p.repat ? r2(taxableAnnual * 0.5) : taxableAnnual;
+      const t = taxFor(p.year, taxableForTax, p.ageBand, p.children);
+      const monthlyTax = r2(t.tax / p.payMonths);
+      const employerMonthlyCost = r2(gross + employerMonthly);
+
+      return {
+        sector: 'private',
+        gross,
+        empMonthly,
+        empMonthlyBeforeCut: cut ? empMonthlyBeforeCut : null,
+        netMonthlyBeforeCut: cut ? r2(gross - empMonthlyBeforeCut - monthlyTax) : null,
+        engEpikourikiEmp, engEpikourikiErg, engPronoia,
+        employerMonthly,
+        monthlyTax,
+        netMonthly: r2(gross - empMonthly - monthlyTax),
+        annualGross,
+        annualContrib,
+        taxableAnnual,
+        taxableForTax,
+        taxBefore: t.before,
+        credit: t.credit,
+        annualTax: t.tax,
+        netAnnual: r2(annualGross - annualContrib - t.tax),
+        employerMonthlyCost,
+        employerAnnualCost: r2(employerMonthlyCost * p.payMonths)
+      };
+    }
+
+    function computePublic(p, specialGross){
+      let base = 0, position = 0, family = 0, other = 0, insurable;
+
+      if(p.publicMode === 'unified'){
+        base = publicBase(p.cat, p.mk);
+        position = p.position;
+        family = p.familyOn ? familyAllowance(p.children) : 0;
+        other = p.otherAllowances;
+        insurable = r2(base + position + other);
+      } else {
+        insurable = specialGross;
+      }
+
+      const gross = r2(insurable + family);
+      const insured = Math.min(insurable, p.cap);
+      const lines = PUBLIC_DEDUCTIONS
+        .filter(d => d.key !== 'mtpy' || p.mtpy)
+        .map(d => ({ label: d.label, rate: d.rate, amount: r2(insured * d.rate) }));
+      const totalRate = lines.reduce((s, d) => s + d.rate, 0);
+      const contribMonthly = r2(lines.reduce((s, d) => s + d.amount, 0));
+
+      // Ο τακτικός μήνας: 12 μισθοί, φόρος = ετήσιος φόρος / 12.
+      const regularGross = r2(gross * 12);
+      const regularContrib = r2(contribMonthly * 12);
+      const regularTax = taxFor(p.year, r2(regularGross - regularContrib), p.ageBand, p.children);
+      const monthlyTax = r2(regularTax.tax / 12);
+      const netMonthly = r2(gross - contribMonthly - monthlyTax);
+
+      const bonus = (p.year === 2027 && p.xmasBonus) ? PUBLIC_XMAS_2027 : 0;
+      const bonusContrib = r2(bonus * totalRate);
+      const annualGross = r2(regularGross + bonus);
+      const annualContrib = r2(regularContrib + bonusContrib);
+      const taxableAnnual = r2(annualGross - annualContrib);
+      const t = taxFor(p.year, taxableAnnual, p.ageBand, p.children);
+
+      return {
+        sector: 'public',
+        publicMode: p.publicMode,
+        base, position, family, other,
+        gross,
+        lines,
+        totalRate,
+        empMonthly: contribMonthly,
+        monthlyTax,
+        netMonthly,
+        bonus,
+        bonusNet: bonus ? r2(bonus - bonusContrib - (t.tax - regularTax.tax)) : 0,
+        annualGross,
+        annualContrib,
+        taxableAnnual,
+        taxBefore: t.before,
+        credit: t.credit,
+        annualTax: t.tax,
+        netAnnual: r2(annualGross - annualContrib - t.tax)
+      };
+    }
+
+    function computeFor(p, gross){
+      return p.sector === 'public' ? computePublic(p, gross) : computePrivate(p, gross);
+    }
+
+    // Καθαρά → μικτά: διχοτόμηση πάνω στον ίδιο υπολογισμό (ο καθαρός αυξάνει με τον μικτό).
+    function grossForNet(p, targetNet){
+      let lo = 0, hi = Math.max(1000, targetNet * 4);
+      while(computeFor(p, hi).netMonthly < targetNet && hi < 1e7) hi *= 2;
+      for(let i = 0; i < 60; i++){
+        const mid = (lo + hi) / 2;
+        if(computeFor(p, mid).netMonthly < targetNet) lo = mid; else hi = mid;
+      }
+      let gross = Math.ceil(hi * 100) / 100;
+      // Ο μικρότερος μικτός σε λεπτά που δίνει τουλάχιστον τον ζητούμενο καθαρό.
+      while(gross > 0.01 && computeFor(p, r2(gross - 0.01)).netMonthly >= targetNet) gross = r2(gross - 0.01);
+      // Αν και το στρογγυλό ποσό δίνει ακριβώς τον ίδιο καθαρό, προτιμάμε εκείνο.
+      const whole = Math.round(gross);
+      if(computeFor(p, whole).netMonthly === computeFor(p, gross).netMonthly) return whole;
+      return r2(gross);
+    }
+
+    function row(label, value, cls){
+      return `<div class="result${cls ? ' ' + cls : ''}"><div>${label}</div><div class="val">${value}</div></div>`;
+    }
+
+    function renderResults(p, r){
+      const isPublic = r.sector === 'public';
+      const reverse = p.direction === 'net' && !(isPublic && p.publicMode === 'unified');
+      const months = isPublic ? 12 : p.payMonths;
+      const yearNote = p.year === 2027 && !isPublic ? ' (από 1/4/2027)' : '';
+      let html = '';
+
+      if(reverse){
+        html += row('Απαιτούμενος μικτός μηνιαίος', euro(r.gross), 'total gross-total');
+      }
+
+      if(isPublic && p.publicMode === 'unified'){
+        html += row(`Βασικός μισθός (${PUBLIC_SCALES[p.cat].label} ΜΚ${p.mk})`, euro(r.base));
+        if(r.position) html += row('Επίδομα θέσης ευθύνης', euro(r.position));
+        if(r.other) html += row('Άλλα επιδόματα', euro(r.other));
+        if(r.family) html += row('Οικογενειακή παροχή', euro(r.family));
+        html += row('Μικτές μηνιαίες αποδοχές', euro(r.gross));
+      } else if(!reverse){
+        html += row('Μικτός μηνιαίος', euro(r.gross));
+      }
+
+      if(isPublic){
+        html += row(`Κρατήσεις (${fmt.format(r2(r.totalRate * 100))}%)`, euro(r.empMonthly));
+        r.lines.forEach(d => {
+          html += row(`• ${d.label} ${fmt.format(r2(d.rate * 100))}%`, euro(d.amount), 'sub');
+        });
+      } else {
+        html += row('Εισφορές εργαζομένου' + yearNote, euro(r.empMonthly));
+        if(p.role === 'engineer'){
+          html += row('• Επικουρική (μηχανικού, 50%)', euro(r.engEpikourikiEmp), 'sub');
+          html += row('• Πρόνοια / Εφάπαξ', euro(r.engPronoia), 'sub');
+        }
+      }
+
+      html += row('Παρακρατούμενος φόρος', euro(r.monthlyTax));
+      html += row('Καθαρός μηνιαίος' + yearNote, euro(r.netMonthly), 'total');
+
+      if(r.netMonthlyBeforeCut !== null && r.netMonthlyBeforeCut !== undefined){
+        html += `<div class="note">Ιανουάριος–Μάρτιος 2027 οι εισφορές είναι ${euro(r.empMonthlyBeforeCut)} και ο καθαρός ${euro(r.netMonthlyBeforeCut)}. Από 1/4/2027 η εισφορά ανεργίας του εργαζομένου πέφτει κατά 0,5 μονάδα (σχέδιο νόμου).</div>`;
+      }
+
+      if(isPublic && r.bonus){
+        html += row('Επίδομα Χριστουγέννων Δεκ. 2027 (500 € μικτά), καθαρό', euro(r.bonusNet));
+      }
+
+      html += '<div class="subsection-title">Ετήσια εικόνα</div><div class="compact">';
+      html += row(`Μικτές ετήσιες αποδοχές (${months} μισθοί${r.bonus ? ' + επίδομα' : ''})`, euro(r.annualGross));
+      html += row(isPublic ? 'Ετήσιες κρατήσεις' : 'Ετήσιες εισφορές εργαζομένου', euro(r.annualContrib));
+      html += row('Ετήσιο φορολογητέο', euro(r.taxableAnnual));
+      if(!isPublic && p.repat) html += row('Φορολογητέο με 5Γ', euro(r.taxableForTax));
+      html += row('Φόρος πριν την έκπτωση', euro(r.taxBefore));
+      html += row('Έκπτωση φόρου', euro(r.credit));
+      html += row('Ετήσιος φόρος', euro(r.annualTax));
+      html += row('Καθαρές ετήσιες αποδοχές', euro(r.netAnnual), 'total');
+      html += '</div>';
+
+      if(!isPublic){
+        html += '<div class="subsection-title">Κόστος εργοδότη</div><div class="compact">';
+        html += row('Εισφορές εργοδότη μηνιαίες', euro(r.employerMonthly));
+        if(p.role === 'engineer') html += row('• Επικουρική (εργοδότη, 50%)', euro(r.engEpikourikiErg), 'sub');
+        html += row('Συνολικό κόστος εργοδότη μηνιαίο', euro(r.employerMonthlyCost));
+        html += row('Συνολικό κόστος εργοδότη ετήσιο', euro(r.employerAnnualCost));
+        html += '</div>';
+      }
+
+      if(isPublic){
+        html += '<div class="note">Οι κρατήσεις υπολογίζονται στον βασικό μισθό και τα επιδόματα· η οικογενειακή παροχή μόνο φορολογείται. Ο ΜΤΠΥ δεν ισχύει σε όλους τους φορείς (π.χ. ΟΤΑ). Το μισθολόγιο είναι αυτό από 1/4/2026· η αύξηση του Απριλίου 2027 δεν έχει ανακοινωθεί ακόμη.</div>';
+      }
+
+      document.getElementById('results').innerHTML = html;
+    }
+
+    function updateBadge(p){
+      const parts = [`Έτος: ${p.year}`];
+      if(p.sector === 'public'){
+        parts.push('Δημόσιο');
+        if(p.publicMode === 'unified') parts.push(`${PUBLIC_SCALES[p.cat].label} ΜΚ${p.mk}`);
+      } else {
+        if(p.repat) parts.push('5Γ');
+        if(p.role === 'engineer') parts.push(`Μηχ. κλ.${p.engClass}`);
+      }
+      if(p.direction === 'net' && !(p.sector === 'public' && p.publicMode === 'unified')) parts.push('Καθαρά → μικτά');
+      document.getElementById('badge').textContent = parts.join(' • ');
+    }
+
+    function calc(){
+      const p = readInputs();
+      const unified = p.sector === 'public' && p.publicMode === 'unified';
+      let r;
+
+      if(unified){
+        r = computePublic(p, 0);
+      } else if(p.direction === 'net'){
+        r = computeFor(p, grossForNet(p, p.amount));
+      } else {
+        r = computeFor(p, p.amount);
+      }
+
+      window.__lastNetSalary = r.netMonthly;
+      updateBadge(p);
+      renderResults(p, r);
+    }
+
+    function zeroResults(){
+      document.getElementById('results').innerHTML = `
+        ${row('Εισφορές / κρατήσεις', '€ 0,00')}
+        ${row('Παρακρατούμενος φόρος', '€ 0,00')}
+        ${row('Καθαρός μηνιαίος', '€ 0,00', 'total')}
         <div class="subsection-title">Ετήσια εικόνα</div>
         <div class="compact">
-          <div class="result"><div>Μικτές ετήσιες αποδοχές</div><div class="val">€ 0,00</div></div>
-          <div class="result"><div>Ετήσιες εισφορές εργαζομένου</div><div class="val">€ 0,00</div></div>
-          <div class="result"><div>Ετήσιος φόρος</div><div class="val">€ 0,00</div></div>
-          <div class="result total"><div>Καθαρές ετήσιες αποδοχές</div><div class="val">€ 0,00</div></div>
-        </div>
-
-        <div class="subsection-title">Κόστος εργοδότη</div>
-        <div class="compact">
-          <div class="result"><div>Εισφορές εργοδότη μηνιαίες</div><div class="val">€ 0,00</div></div>
-          <div class="result"><div>Συνολικό κόστος εργοδότη μηνιαίο</div><div class="val">€ 0,00</div></div>
-          <div class="result"><div>Συνολικό κόστος εργοδότη ετήσιο</div><div class="val">€ 0,00</div></div>
+          ${row('Μικτές ετήσιες αποδοχές', '€ 0,00')}
+          ${row('Ετήσιος φόρος', '€ 0,00')}
+          ${row('Καθαρές ετήσιες αποδοχές', '€ 0,00', 'total')}
         </div>
       `;
     }
@@ -1151,110 +1649,64 @@
       }
     }
 
-    // Σταθερά μηνιαία ποσά εισφορών μηχανικών ανά ασφαλιστική κλάση
-    // (e-ΕΦΚΑ εγκύκλιος 4/2026, ισχύς από 01/01/2026)
-    const ENGINEER_CLASS_AMOUNTS = {
-      1: { epikouriki: 46.57, pronoia: 31.05 },
-      2: { epikouriki: 56.13, pronoia: 37.02 },
-      3: { epikouriki: 66.88, pronoia: 44.18 }
-    };
-
-    function calc(){
-      const gross = n(document.getElementById('gross').value);
-      const payMonths = n(document.getElementById('payMonths').value, 14);
-      const year = n(document.getElementById('taxYear').value, 2026);
-      const children = n(document.getElementById('children').value, 0);
-      const ageBand = document.getElementById('ageBand').value;
-      const role = document.getElementById('role').value;
-      const repat = document.getElementById('repat').checked;
-
-      let empRate = n(document.getElementById('efkaEmployee').value, 0.1337);
-      let employerRate = n(document.getElementById('efkaEmployer').value, 0.2179);
-      const cap = n(document.getElementById('efkaCap').value, 7761.94);
-
-      if(role === 'seller') empRate += 0.04;
-
-      const insuredMonthly = Math.min(gross, cap);
-      let employeeContribMonthly = r2(insuredMonthly * empRate);
-      let employerContribMonthly = r2(insuredMonthly * employerRate);
-
-      // Επιπλέον εισφορές μηχανικών — Επικουρική + Πρόνοια (e-ΕΦΚΑ εγκ. 4/2026)
-      let engEpikourikiEmp = 0;
-      let engEpikourikiErg = 0;
-      let engPronoia = 0;
-      if(role === 'engineer'){
-        const engClass = n(document.getElementById('engClass').value, 1);
-        const amounts = ENGINEER_CLASS_AMOUNTS[engClass] || ENGINEER_CLASS_AMOUNTS[1];
-        // Επικουρική: 50% εργαζόμενος / 50% εργοδότης
-        engEpikourikiEmp = r2(amounts.epikouriki / 2);
-        engEpikourikiErg = r2(amounts.epikouriki / 2);
-        // Πρόνοια: όλο τον ασφαλισμένο
-        engPronoia = r2(amounts.pronoia);
-
-        employeeContribMonthly = r2(employeeContribMonthly + engEpikourikiEmp + engPronoia);
-        employerContribMonthly = r2(employerContribMonthly + engEpikourikiErg);
+    function fillMkOptions(){
+      const cat = document.getElementById('publicCat').value;
+      const s = PUBLIC_SCALES[cat];
+      const sel = document.getElementById('publicMk');
+      const prev = n(sel.value, 1);
+      sel.innerHTML = '';
+      for(let k = 1; k <= s.count; k++){
+        const from = (k - 1) * s.years;
+        const opt = document.createElement('option');
+        opt.value = String(k);
+        opt.textContent = `ΜΚ${k} · ${from}–${from + s.years} έτη`;
+        sel.appendChild(opt);
       }
-
-      const annualGross = r2(gross * payMonths);
-      const annualContrib = r2(employeeContribMonthly * payMonths);
-      const taxableAnnual = r2(annualGross - annualContrib);
-      const taxableForTax = repat ? r2(taxableAnnual * 0.5) : taxableAnnual;
-
-      const taxBeforeCredit = year === 2026
-        ? annualTax2026(taxableForTax, ageBand, children)
-        : annualTax2025(taxableForTax);
-
-      const credit = taxCredit(children, taxableForTax);
-      const annualTax = r2(Math.max(0, taxBeforeCredit - credit));
-      const monthlyTax = r2(annualTax / payMonths);
-
-      const netMonthly = r2(gross - employeeContribMonthly - monthlyTax);
-      window.__lastNetSalary = netMonthly;
-      const netAnnual = r2(annualGross - annualContrib - annualTax);
-      const employerMonthlyCost = r2(gross + employerContribMonthly);
-      const employerAnnualCost = r2(employerMonthlyCost * payMonths);
-
-      document.getElementById('badge').textContent =
-        `Έτος: ${year}` + (repat ? ' • 5Γ' : '') + (role === 'engineer' ? ` • Μηχ. κλ.${document.getElementById('engClass').value}` : '');
-
-      // Επιπλέον γραμμές για μηχανικούς (εμφανίζονται μόνο όταν role=engineer)
-      const engRowsEmp = role === 'engineer' ? `
-        <div class="result"><div>• Επικουρική (μηχανικού, 50%)</div><div class="val">${euro(engEpikourikiEmp)}</div></div>
-        <div class="result"><div>• Πρόνοια / Εφάπαξ</div><div class="val">${euro(engPronoia)}</div></div>
-      ` : '';
-
-      const engRowsErg = role === 'engineer' ? `
-        <div class="result"><div>• Επικουρική (εργοδότη, 50%)</div><div class="val">${euro(engEpikourikiErg)}</div></div>
-      ` : '';
-
-      const res = document.getElementById('results');
-      res.innerHTML = `
-        <div class="result"><div>Εισφορές εργαζομένου</div><div class="val">${euro(employeeContribMonthly)}</div></div>
-        ${engRowsEmp}
-        <div class="result"><div>Παρακρατούμενος φόρος</div><div class="val">${euro(monthlyTax)}</div></div>
-        <div class="result total"><div>Καθαρός μηνιαίος</div><div class="val">${euro(netMonthly)}</div></div>
-
-        <div class="subsection-title">Ετήσια εικόνα</div>
-        <div class="compact">
-          <div class="result"><div>Μικτές ετήσιες αποδοχές</div><div class="val">${euro(annualGross)}</div></div>
-          <div class="result"><div>Ετήσιες εισφορές εργαζομένου</div><div class="val">${euro(annualContrib)}</div></div>
-          <div class="result"><div>Ετήσιο φορολογητέο</div><div class="val">${euro(taxableAnnual)}</div></div>
-          ${repat ? `<div class="result"><div>Φορολογητέο με 5Γ</div><div class="val">${euro(taxableForTax)}</div></div>` : ''}
-          <div class="result"><div>Φόρος πριν την έκπτωση</div><div class="val">${euro(taxBeforeCredit)}</div></div>
-          <div class="result"><div>Έκπτωση φόρου</div><div class="val">${euro(credit)}</div></div>
-          <div class="result"><div>Ετήσιος φόρος</div><div class="val">${euro(annualTax)}</div></div>
-          <div class="result total"><div>Καθαρές ετήσιες αποδοχές</div><div class="val">${euro(netAnnual)}</div></div>
-        </div>
-
-        <div class="subsection-title">Κόστος εργοδότη</div>
-        <div class="compact">
-          <div class="result"><div>Εισφορές εργοδότη μηνιαίες</div><div class="val">${euro(employerContribMonthly)}</div></div>
-          ${engRowsErg}
-          <div class="result"><div>Συνολικό κόστος εργοδότη μηνιαίο</div><div class="val">${euro(employerMonthlyCost)}</div></div>
-          <div class="result"><div>Συνολικό κόστος εργοδότη ετήσιο</div><div class="val">${euro(employerAnnualCost)}</div></div>
-        </div>
-      `;
+      sel.value = String(Math.min(prev, s.count));
     }
+
+    function setSeg(segId, value){
+      document.querySelectorAll(`#${segId} button`).forEach(b => {
+        const on = b.dataset.value === value;
+        b.classList.toggle('on', on);
+        b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+    }
+
+    // Ποια πεδία φαίνονται: ιδιωτικός / δημόσιος, ενιαίο / ειδικό μισθολόγιο, μικτά / καθαρά.
+    function syncForm(){
+      const p = readInputs();
+      const isPublic = p.sector === 'public';
+      const unified = isPublic && p.publicMode === 'unified';
+      const show = (id, on) => { document.getElementById(id).style.display = on ? '' : 'none'; };
+
+      show('privateFields', !isPublic);
+      show('payMonthsWrap', !isPublic);
+      show('publicFields', isPublic);
+      show('unifiedFields', unified);
+      show('amountWrap', !unified);
+      show('directionWrap', !unified);
+      show('xmasWrap', isPublic && p.year === 2027);
+
+      document.getElementById('amountLabel').textContent = p.direction === 'net'
+        ? 'Καθαρός μηνιαίος μισθός (€)'
+        : (isPublic ? 'Μικτές μηνιαίες αποδοχές (€)' : 'Μικτός μηνιαίος μισθός (€)');
+      document.getElementById('gross').placeholder = p.direction === 'net' ? 'π.χ. 1.000' : 'π.χ. 1.200';
+      document.getElementById('calcBtnText').textContent = (p.direction === 'net' && !unified)
+        ? 'Υπολογισμός μικτού μισθού'
+        : 'Υπολογισμός καθαρού μισθού';
+      document.getElementById('ageHelp').textContent = `Αφορά την ηλικία σας την 01/01/${p.year}.`;
+    }
+
+    document.querySelectorAll('.seg button').forEach(b => {
+      b.addEventListener('click', function(){
+        setSeg(b.parentElement.id, b.dataset.value);
+        syncForm();
+      });
+    });
+
+    ['publicMode', 'taxYear'].forEach(id => document.getElementById(id).addEventListener('change', syncForm));
+    document.getElementById('publicCat').addEventListener('change', fillMkOptions);
 
     document.getElementById('calcBtn').addEventListener('click', function(){
       calc();
@@ -1263,7 +1715,7 @@
     document.getElementById('resetBtn').addEventListener('click', function(){
       document.getElementById('gross').value = '';
       document.getElementById('payMonths').value = '14';
-      document.getElementById('taxYear').value = '2026';
+      document.getElementById('taxYear').value = '2027';
       document.getElementById('children').value = '0';
       document.getElementById('ageBand').value = '31+';
       document.getElementById('role').value = 'office';
@@ -1273,12 +1725,26 @@
       document.getElementById('efkaEmployee').value = '0.1337';
       document.getElementById('efkaEmployer').value = '0.2179';
       document.getElementById('efkaCap').value = '7761.94';
-      document.getElementById('badge').textContent = 'Έτος: 2026';
+      document.getElementById('publicMode').value = 'unified';
+      document.getElementById('publicCat').value = 'PE';
+      fillMkOptions();
+      document.getElementById('publicMk').value = '1';
+      document.getElementById('publicPosition').value = '0';
+      document.getElementById('publicOther').value = '';
+      document.getElementById('publicFamily').checked = true;
+      document.getElementById('publicMtpy').checked = true;
+      document.getElementById('publicXmas').checked = true;
+      setSeg('sectorSeg', 'private');
+      setSeg('directionSeg', 'gross');
+      syncForm();
+      document.getElementById('badge').textContent = 'Έτος: 2027';
       zeroResults();
     });
 
     document.getElementById('role').addEventListener('change', applyRoleDefaults);
 
+    fillMkOptions();
+    syncForm();
     zeroResults();
   </script>
 
