@@ -95,6 +95,9 @@ tr:nth-child(even) td{background:rgba(124,58,237,0.02)}
 .footer-links{margin-bottom:12px;display:flex;justify-content:center;gap:18px;flex-wrap:wrap}
 .footer-links a{color:#64748b;font-size:13px;text-decoration:none;border:none}
 .footer-links a:hover{color:#7c3aed}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:20px 0;border-radius:10px}
+.table-wrap table{margin:0}
+@media(max-width:600px){.table-wrap table{font-size:13px}.table-wrap th,.table-wrap td{padding:9px 10px}}
 </style>
 </head>
 <body>
@@ -131,7 +134,7 @@ tr:nth-child(even) td{background:rgba(124,58,237,0.02)}
 
     <h2>Λίστα υποχρεωτικών (εξαιρέσιμων) αργιών 2026</h2>
 
-    <table>
+    <div class="table-wrap"><table>
       <thead><tr><th>Ημερομηνία</th><th>Αργία</th><th>2026</th></tr></thead>
       <tbody>
         <tr><td>1 Ιανουαρίου</td><td>Πρωτοχρονιά</td><td>Πέμπτη</td></tr>
@@ -144,7 +147,7 @@ tr:nth-child(even) td{background:rgba(124,58,237,0.02)}
         <tr><td>25 Δεκεμβρίου</td><td>Χριστούγεννα</td><td>Παρασκευή</td></tr>
         <tr><td>26 Δεκεμβρίου</td><td>Σύναξη Θεοτόκου</td><td>Σάββατο</td></tr>
       </tbody>
-    </table>
+    </table></div>
 
     <div class="box-warning">
       <p><strong>Προσοχή:</strong> Αν αργία συμπέσει με <strong>Κυριακή</strong> (όπως το Πάσχα 2026), το ωφέλημα της αργίας δεν «μεταφέρεται» σε άλλη μέρα. Αλλά επειδή η Κυριακή ήδη αμείβεται με 75% προσαύξηση, εφαρμόζεται η υψηλότερη προσαύξηση.</p>
@@ -152,7 +155,7 @@ tr:nth-child(even) td{background:rgba(124,58,237,0.02)}
 
     <h2>Λίστα προαιρετικών αργιών 2026</h2>
 
-    <table>
+    <div class="table-wrap"><table>
       <thead><tr><th>Ημερομηνία</th><th>Αργία</th><th>2026</th></tr></thead>
       <tbody>
         <tr><td>2 Μαρτίου</td><td>Καθαρά Δευτέρα (κινητή)</td><td>Δευτέρα</td></tr>
@@ -161,7 +164,7 @@ tr:nth-child(even) td{background:rgba(124,58,237,0.02)}
         <tr><td>15 Αυγούστου</td><td>Κοίμηση Θεοτόκου</td><td>Σάββατο</td></tr>
         <tr><td>28 Οκτωβρίου</td><td>Εθνική Εορτή (Όχι)</td><td>Τετάρτη</td></tr>
       </tbody>
-    </table>
+    </table></div>
 
     <div class="box-info">
       <p>Σημείωση: Το 28 Οκτωβρίου στον δημόσιο τομέα αντιμετωπίζεται ως εξαιρέσιμη αργία. Στον ιδιωτικό τομέα είναι επίσης ουσιαστικά εξαιρέσιμη για τις περισσότερες επιχειρήσεις, αλλά τυπικά κατατάσσεται ως προαιρετική.</p>

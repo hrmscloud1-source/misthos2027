@@ -1543,6 +1543,8 @@
     const MONTHS_BEFORE_CUT_2027 = 3;
     // Ώρες πραγματικής εργασίας τον χρόνο: 52 × 40 μείον 20 ημέρες άδεια και 9 αργίες.
     const WORK_HOURS = 52 * 40 - (20 + 9) * 8;
+    // Κατώτατος μισθός πλήρους απασχόλησης από 1/4/2026.
+    const MINIMUM_WAGE = 920;
 
     function readInputs(){
       const val = id => document.getElementById(id).value;
@@ -1882,7 +1884,10 @@
       document.getElementById('kYearSub').textContent = `${p.payMonths} μισθοί με τις εισφορές`;
       document.getElementById('badge').textContent = `Έτος: ${p.year}` + (p.headcount > 1 ? ` • ${p.headcount} άτομα` : '');
 
-      document.getElementById('hourly').innerHTML =
+      const belowMinimum = r.gross < MINIMUM_WAGE
+        ? `<strong>Προσοχή:</strong> ο μικτός είναι κάτω από τον κατώτατο μισθό (${euro(MINIMUM_WAGE)}) για πλήρη απασχόληση. Επιτρέπεται μόνο για μερική απασχόληση.<br>`
+        : '';
+      document.getElementById('hourly').innerHTML = belowMinimum +
         `Κόστος ανά ώρα πραγματικής εργασίας: <strong>${euro(r.costAnnual / WORK_HOURS)}</strong> ` +
         `(${fmt0.format(WORK_HOURS)} ώρες τον χρόνο: 40ωρο, 20 ημέρες άδεια, 9 αργίες). ` +
         `Για κάθε 1 € που παίρνει καθαρό ο εργαζόμενος, η επιχείρηση πληρώνει <strong>${fmt.format(r2(r.costAnnual / r.netAnnual))} €</strong>.`;

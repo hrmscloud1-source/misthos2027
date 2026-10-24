@@ -91,6 +91,9 @@ tr:nth-child(even) td{background:rgba(124,58,237,0.02)}
 .footer-links{margin-bottom:12px;display:flex;justify-content:center;gap:18px;flex-wrap:wrap}
 .footer-links a{color:#64748b;font-size:13px;text-decoration:none;border:none}
 .footer-links a:hover{color:#7c3aed}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:20px 0;border-radius:10px}
+.table-wrap table{margin:0}
+@media(max-width:600px){.table-wrap table{font-size:13px}.table-wrap th,.table-wrap td{padding:9px 10px}}
 </style>
 </head>
 <body>
@@ -133,13 +136,13 @@ tr:nth-child(even) td{background:rgba(124,58,237,0.02)}
       <p>Αν το <strong>75% ή περισσότερο</strong> των ετήσιων εισοδημάτων σου από μπλοκάκι προέρχεται από <strong>έναν μόνο πελάτη</strong>, τότε τα εισοδήματα αυτά <strong>φορολογούνται ως μισθός</strong> (κλίμακα μισθωτών, παρακράτηση ΦΜΥ) και όχι ως εισόδημα ελεύθερου επαγγελματία. Αυτό ονομάζεται «μπλοκάκι εξαρτημένης σχέσης».</p>
     </div>
 
-    <table>
+    <div class="table-wrap"><table>
       <thead><tr><th>Κατάσταση</th><th>Φορολόγηση</th><th>Εισφορές ΕΦΚΑ</th></tr></thead>
       <tbody>
         <tr><td>Πολλοί πελάτες (κανένας >75%)</td><td>Κλίμακα ελ. επαγγελματία</td><td>Ελεύθερου επαγγελματία</td></tr>
         <tr><td>Ένας πελάτης (>75% εισοδήματος)</td><td>Κλίμακα μισθωτών (ΦΜΥ)</td><td>Μισθωτού (13,37% + 21,79%)</td></tr>
       </tbody>
-    </table>
+    </table></div>
 
     <h2>Παρακράτηση φόρου 20%</h2>
     <p>Κάθε πελάτης που λαμβάνει ΔΠΥ υποχρεούται να παρακρατεί <strong>20%</strong> επί του καθαρού ποσού της αμοιβής και να το αποδίδει στην ΑΑΔΕ.</p>
@@ -168,7 +171,7 @@ tr:nth-child(even) td{background:rgba(124,58,237,0.02)}
     <h2>Εισφορές ΕΦΚΑ ελεύθερου επαγγελματία 2026</h2>
     <p>Οι ελεύθεροι επαγγελματίες που εκδίδουν μπλοκάκι υπάγονται στον e-ΕΦΚΑ ως αυτοτελώς ασφαλισμένοι. Οι εισφορές είναι <strong>υποχρεωτικές ανεξάρτητα από το εισόδημα</strong> και υπολογίζονται βάσει του ασφαλιστέου εισοδήματος:</p>
 
-    <table>
+    <div class="table-wrap"><table>
       <thead><tr><th>Κατηγορία εισφορών</th><th>Ποσοστό</th><th>Βάση υπολογισμού</th></tr></thead>
       <tbody>
         <tr><td>Κύρια σύνταξη (ΕΦΚΑ)</td><td>20%</td><td>Ασφαλιστέο εισόδημα</td></tr>
@@ -176,14 +179,14 @@ tr:nth-child(even) td{background:rgba(124,58,237,0.02)}
         <tr><td>Εφάπαξ (ΤΕΚΑ)</td><td>4%</td><td>Ασφαλιστέο εισόδημα</td></tr>
         <tr><td><strong>Σύνολο</strong></td><td><strong>≈ 30,95%</strong></td><td></td></tr>
       </tbody>
-    </table>
+    </table></div>
 
     <div class="box-info">
       <p>Το ασφαλιστέο εισόδημα προκύπτει από το δηλωθέν καθαρό εισόδημα του προηγούμενου έτους, με κατώτατο όριο τον κατώτατο μισθό (920€) και ανώτατο πλαφόν. Για νέους ελεύθερους επαγγελματίες (πρώτα 5 χρόνια) ισχύουν μειωμένες εισφορές.</p>
     </div>
 
     <h2>Σύγκριση: Μπλοκάκι vs Μισθωτός</h2>
-    <table>
+    <div class="table-wrap"><table>
       <thead><tr><th>Στοιχείο</th><th>Μισθωτός</th><th>Μπλοκάκι (ελ. επαγγελματίας)</th></tr></thead>
       <tbody>
         <tr><td>Φόρος εισοδήματος</td><td>Κλίμακα μισθωτών + έκπτωση</td><td>Κλίμακα ελ. επαγγελματία (χωρίς έκπτωση)</td></tr>
@@ -194,7 +197,7 @@ tr:nth-child(even) td{background:rgba(124,58,237,0.02)}
         <tr><td>ΦΠΑ</td><td>❌ Δεν ισχύει</td><td>✅ 24% (ή εξαίρεση)</td></tr>
         <tr><td>Έκπτωση επαγγελματικών δαπανών</td><td>Περιορισμένη</td><td>✅ Ευρύτερη (ΔΠΥ, εξοπλισμός κ.λπ.)</td></tr>
       </tbody>
-    </table>
+    </table></div>
 
     <h2>Υποχρεώσεις όσων εκδίδουν μπλοκάκι</h2>
     <ol>

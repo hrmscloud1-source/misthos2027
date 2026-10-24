@@ -104,6 +104,9 @@ tr:nth-child(even) td{background:rgba(124,58,237,0.02)}
 .footer-links{margin-bottom:12px;display:flex;justify-content:center;gap:18px;flex-wrap:wrap}
 .footer-links a{color:#64748b;font-size:13px;text-decoration:none;border:none}
 .footer-links a:hover{color:#7c3aed}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:20px 0;border-radius:10px}
+.table-wrap table{margin:0}
+@media(max-width:600px){.table-wrap table{font-size:13px}.table-wrap th,.table-wrap td{padding:9px 10px}}
 </style>
 </head>
 <body>
@@ -189,7 +192,7 @@ tr:nth-child(even) td{background:rgba(124,58,237,0.02)}
     <h2>Φορολογικές κλίμακες 2026 (ετήσιο εισόδημα)</h2>
     <p>Η νέα φορολογική κλίμακα για μισθωτούς, σύμφωνα με τον Ν. 5246/2025 που ισχύει από 1/1/2026:</p>
 
-    <table>
+    <div class="table-wrap"><table>
       <thead><tr><th>Εισόδημα (ετήσιο)</th><th>Φορολογικός συντελεστής</th></tr></thead>
       <tbody>
         <tr><td>0 – 10.000 €</td><td>9%</td></tr>
@@ -198,7 +201,7 @@ tr:nth-child(even) td{background:rgba(124,58,237,0.02)}
         <tr><td>30.001 – 40.000 €</td><td>36%</td></tr>
         <tr><td>Άνω των 40.000 €</td><td>44%</td></tr>
       </tbody>
-    </table>
+    </table></div>
 
     <div class="box-info">
       <p><strong>Σημαντικό:</strong> Η κλίμακα εφαρμόζεται <strong>προοδευτικά</strong> — δηλαδή ο υψηλότερος συντελεστής ισχύει μόνο για το τμήμα του εισοδήματος που ξεπερνά το κατώφλι, όχι για το σύνολο.</p>
@@ -207,7 +210,7 @@ tr:nth-child(even) td{background:rgba(124,58,237,0.02)}
     <h2>Έκπτωση φόρου μισθωτών 2026</h2>
     <p>Οι μισθωτοί δικαιούνται ετήσια έκπτωση φόρου που αφαιρείται από τον αναλογούντα φόρο:</p>
 
-    <table>
+    <div class="table-wrap"><table>
       <thead><tr><th>Εξαρτώμενα τέκνα</th><th>Ετήσια έκπτωση φόρου</th><th>Μηνιαία εξοικονόμηση</th></tr></thead>
       <tbody>
         <tr><td>0 τέκνα</td><td>900 €</td><td>75 €</td></tr>
@@ -216,7 +219,7 @@ tr:nth-child(even) td{background:rgba(124,58,237,0.02)}
         <tr><td>3 τέκνα</td><td>1.560 €</td><td>130 €</td></tr>
         <tr><td>4+ τέκνα</td><td>+220 € ανά τέκνο</td><td>+18,33 € ανά τέκνο</td></tr>
       </tbody>
-    </table>
+    </table></div>
 
     <h2>Παραδείγματα υπολογισμού</h2>
 
@@ -297,7 +300,7 @@ tr:nth-child(even) td{background:rgba(124,58,237,0.02)}
     <h2>Κόστος εργοδότη: το πλήρες εικόνα</h2>
     <p>Ο εργοδότης πληρώνει επιπλέον <strong>21,79%</strong> επί του μικτού μισθού ως εργοδοτικές εισφορές ΕΦΚΑ. Αυτό σημαίνει ότι το πραγματικό κόστος πρόσληψης είναι πάντα υψηλότερο από τον μικτό μισθό:</p>
 
-    <table>
+    <div class="table-wrap"><table>
       <thead><tr><th>Μικτός μισθός</th><th>Εισφορές εργοδότη (21,79%)</th><th>Συνολικό κόστος</th></tr></thead>
       <tbody>
         <tr><td>920 €</td><td>200,47 €</td><td>1.120,47 €</td></tr>
@@ -305,7 +308,7 @@ tr:nth-child(even) td{background:rgba(124,58,237,0.02)}
         <tr><td>1.500 €</td><td>326,85 €</td><td>1.826,85 €</td></tr>
         <tr><td>2.000 €</td><td>435,80 €</td><td>2.435,80 €</td></tr>
       </tbody>
-    </table>
+    </table></div>
 
     
     <!-- Ezoic Ad #102 — Mid content -->

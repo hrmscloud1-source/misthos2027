@@ -124,6 +124,9 @@ tr:nth-child(even) td{background:rgba(124,58,237,0.02)}
 .footer-links{margin-bottom:12px;display:flex;justify-content:center;gap:18px;flex-wrap:wrap}
 .footer-links a{color:#64748b;font-size:13px;text-decoration:none;border:none}
 .footer-links a:hover{color:#7c3aed}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:20px 0;border-radius:10px}
+.table-wrap table{margin:0}
+@media(max-width:600px){.table-wrap table{font-size:13px}.table-wrap th,.table-wrap td{padding:9px 10px}}
 </style>
 </head>
 <body>
@@ -184,7 +187,7 @@ tr:nth-child(even) td{background:rgba(124,58,237,0.02)}
     <h2>Πόσο είναι το επίδομα αδείας για το 2026</h2>
     <p>Το ύψος του επιδόματος εξαρτάται από τον τρόπο αμοιβής:</p>
 
-    <table>
+    <div class="table-wrap"><table>
       <thead>
         <tr><th>Κατηγορία εργαζομένου</th><th>Επίδομα αδείας</th><th>Ανώτατο όριο</th></tr>
       </thead>
@@ -193,7 +196,7 @@ tr:nth-child(even) td{background:rgba(124,58,237,0.02)}
         <tr><td>Ημερομίσθιο / ωρομίσθιο</td><td>13 ημερομίσθια</td><td>13 ημερομίσθια</td></tr>
         <tr><td>Αμοιβή με ποσοστά</td><td>13 ημερομίσθια</td><td>13 ημερομίσθια</td></tr>
       </tbody>
-    </table>
+    </table></div>
 
     <p>Από την <strong>1η Απριλίου 2026</strong>, ο κατώτατος μισθός στην Ελλάδα διαμορφώθηκε στα <strong>920€ μικτά</strong> (από 880€ που ίσχυαν προηγουμένως). Αυτό μετατοπίζει αυτόματα προς τα πάνω και το επίδομα αδείας για όσους αμείβονται με τον κατώτατο μισθό.</p>
 

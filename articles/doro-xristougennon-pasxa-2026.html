@@ -96,6 +96,9 @@ tr:nth-child(even) td{background:rgba(124,58,237,0.02)}
 .footer-links{margin-bottom:12px;display:flex;justify-content:center;gap:18px;flex-wrap:wrap}
 .footer-links a{color:#64748b;font-size:13px;text-decoration:none;border:none}
 .footer-links a:hover{color:#7c3aed}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:20px 0;border-radius:10px}
+.table-wrap table{margin:0}
+@media(max-width:600px){.table-wrap table{font-size:13px}.table-wrap th,.table-wrap td{padding:9px 10px}}
 </style>
 </head>
 <body>
@@ -185,13 +188,13 @@ tr:nth-child(even) td{background:rgba(124,58,237,0.02)}
     <h2>Αναλογικό δώρο — πώς υπολογίζεται</h2>
     <p>Αν δεν έχεις εργαστεί ολόκληρη την αντίστοιχη περίοδο, το δώρο υπολογίζεται <strong>αναλογικά</strong>:</p>
 
-    <table>
+    <div class="table-wrap"><table>
       <thead><tr><th>Δώρο</th><th>Αναφορική περίοδος</th><th>Τύπος αναλογίας</th></tr></thead>
       <tbody>
         <tr><td>Χριστουγέννων</td><td>1 Μαΐου – 31 Δεκεμβρίου (8 μήνες)</td><td>Μισθός × (μήνες / 8)</td></tr>
         <tr><td>Πάσχα</td><td>1 Ιανουαρίου – 30 Απριλίου (4 μήνες)</td><td>½ Μισθού × (μήνες / 4)</td></tr>
       </tbody>
-    </table>
+    </table></div>
 
     <div class="example-card">
       <div class="label">Παράδειγμα 4 — αναλογικό Δώρο Χριστουγέννων</div>
@@ -205,7 +208,7 @@ tr:nth-child(even) td{background:rgba(124,58,237,0.02)}
     <h2>Σύνολο αποδοχών έτους 2026</h2>
     <p>Αθροίζοντας όλες τις παροχές για έναν εργαζόμενο με μισθό 920€ (κατώτατος από 1/4/2026):</p>
 
-    <table>
+    <div class="table-wrap"><table>
       <thead><tr><th>Παροχή</th><th>Ποσό (μικτά)</th></tr></thead>
       <tbody>
         <tr><td>12 μηνιαίοι μισθοί</td><td>11.040,00 €</td></tr>
@@ -214,7 +217,7 @@ tr:nth-child(even) td{background:rgba(124,58,237,0.02)}
         <tr><td>Επίδομα αδείας</td><td>460,00 €</td></tr>
         <tr><td><strong>Σύνολο ετήσιων αποδοχών</strong></td><td><strong>12.880,00 €</strong></td></tr>
       </tbody>
-    </table>
+    </table></div>
 
     <h2>Φορολογία & ασφαλιστικές εισφορές</h2>
     <p>Και τα δύο δώρα <strong>δεν εξαιρούνται</strong> από εισφορές ή φόρο. Επιβαρύνονται κανονικά με:</p>

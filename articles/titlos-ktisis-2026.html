@@ -91,6 +91,9 @@ tr:nth-child(even) td{background:rgba(124,58,237,0.02)}
 .footer-links{margin-bottom:12px;display:flex;justify-content:center;gap:18px;flex-wrap:wrap}
 .footer-links a{color:#64748b;font-size:13px;text-decoration:none;border:none}
 .footer-links a:hover{color:#7c3aed}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:20px 0;border-radius:10px}
+.table-wrap table{margin:0}
+@media(max-width:600px){.table-wrap table{font-size:13px}.table-wrap th,.table-wrap td{padding:9px 10px}}
 </style>
 </head>
 <body>
@@ -138,7 +141,7 @@ tr:nth-child(even) td{background:rgba(124,58,237,0.02)}
     <h2>Παρακράτηση φόρου 20%</h2>
     <p>Ο εκδότης του τίτλου κτήσης υποχρεούται να <strong>παρακρατεί φόρο 20%</strong> επί του συνολικού ποσού αμοιβής και να τον αποδίδει στην ΑΑΔΕ (μέσω δήλωσης παρακρατούμενων φόρων, έντυπο Φ-01.013).</p>
 
-    <table>
+    <div class="table-wrap"><table>
       <thead><tr><th>Κατηγορία αμοιβής</th><th>Συντελεστής παρακράτησης</th></tr></thead>
       <tbody>
         <tr><td>Αμοιβές για υπηρεσίες (τίτλος κτήσης)</td><td><strong>20%</strong></td></tr>
@@ -146,7 +149,7 @@ tr:nth-child(even) td{background:rgba(124,58,237,0.02)}
         <tr><td>Μισθοί (εξαρτημένη εργασία)</td><td>Κλίμακα ΦΜΥ</td></tr>
         <tr><td>Μπλοκάκι / ΔΠΥ</td><td>20% αν >12 πελάτες, αλλιώς κλίμακα</td></tr>
       </tbody>
-    </table>
+    </table></div>
 
     <div class="example-card">
       <div class="label">Παράδειγμα</div>
@@ -172,7 +175,7 @@ tr:nth-child(even) td{background:rgba(124,58,237,0.02)}
     </div>
 
     <h2>Τίτλος κτήσης vs Μπλοκάκι: Ποια η διαφορά</h2>
-    <table>
+    <div class="table-wrap"><table>
       <thead><tr><th>Χαρακτηριστικό</th><th>Τίτλος κτήσης</th><th>Μπλοκάκι (ΔΠΥ)</th></tr></thead>
       <tbody>
         <tr><td>Ποιος εκδίδει</td><td>Ο αγοραστής/εργοδότης</td><td>Ο παρέχων υπηρεσίες</td></tr>
@@ -182,7 +185,7 @@ tr:nth-child(even) td{background:rgba(124,58,237,0.02)}
         <tr><td>ΦΠΑ</td><td>Δεν ισχύει</td><td>Ισχύει (24% ή εξαίρεση)</td></tr>
         <tr><td>ΕΦΚΑ</td><td>Συνήθως όχι</td><td>Ναι (ελεύθερου επαγγελματία)</td></tr>
       </tbody>
-    </table>
+    </table></div>
 
     <h2>Υποχρεώσεις εκδότη (εταιρεία/εργοδότης)</h2>
     <ol>
