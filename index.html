@@ -800,11 +800,13 @@
     #militaryFields,
     #securityFields,
     #annexFields,
+    #teacherFields,
     #uniformExtras,
     #allowWrap,
     #militaryFields > label,
     #securityFields > label,
-    #annexFields > label{
+    #annexFields > label,
+    #teacherFields > label{
       margin-top:14px;
     }
 
@@ -1217,6 +1219,7 @@
           <label for="publicMode">Μισθολόγιο</label>
           <select id="publicMode">
             <option value="unified" selected>Ενιαίο μισθολόγιο (ν. 4354/2015)</option>
+            <option value="teachers">Εκπαιδευτικοί: μόνιμοι, νεοδιόριστοι, αναπληρωτές</option>
             <option value="military">Ένοπλες Δυνάμεις: στρατιωτικοί (ν. 5265/2026)</option>
             <option value="security">Σώματα Ασφαλείας: Αστυνομία, Πυροσβεστική, Λιμενικό (ν. 5246/2025)</option>
             <option value="annex">Άλλα ειδικά μισθολόγια: δικαστικοί, γιατροί ΕΣΥ, ΔΕΠ, διπλωματικοί κ.ά.</option>
@@ -1322,6 +1325,47 @@
             </div>
           </div>
 
+          <div id="teacherFields">
+            <label for="teacherStatus">Σχέση εργασίας</label>
+            <select id="teacherStatus">
+              <option value="permanent" selected>Μόνιμος εκπαιδευτικός</option>
+              <option value="new">Νεοδιόριστος (πρώτοι 12 μήνες)</option>
+              <option value="substitute">Αναπληρωτής</option>
+            </select>
+            <div class="help" id="teacherStatusHelp"></div>
+
+            <div class="row">
+              <div>
+                <label for="teacherCat">Κατηγορία</label>
+                <select id="teacherCat">
+                  <option value="PE" selected>ΠΕ (πανεπιστημιακή)</option>
+                  <option value="TE">ΤΕ (τεχνολογική)</option>
+                </select>
+              </div>
+              <div>
+                <label for="teacherYears">Έτη αναγνωρισμένης υπηρεσίας</label>
+                <input id="teacherYears" type="number" min="0" max="45" step="1" value="0" inputmode="numeric" />
+              </div>
+            </div>
+
+            <label for="teacherDegree">Μεταπτυχιακός ή διδακτορικός τίτλος</label>
+            <select id="teacherDegree">
+              <option value="0" selected>Κανένας</option>
+              <option value="2">Μεταπτυχιακό (+2 έτη)</option>
+              <option value="6">Διδακτορικό (+6 έτη)</option>
+            </select>
+            <div class="help" id="teacherMkHelp"></div>
+
+            <label for="teacherPosition">Θέση στο σχολείο</label>
+            <select id="teacherPosition">
+              <option value="0" selected>Εκπαιδευτικός τάξης</option>
+              <option value="150">Υποδιευθυντής (150 €)</option>
+              <option value="165">Προϊστάμενος ολιγοθέσιου σχολείου / νηπιαγωγείου (165 €)</option>
+              <option value="275">Διευθυντής Γυμνασίου (275 €)</option>
+              <option value="330">Διευθυντής Λυκείου (330 €)</option>
+            </select>
+          </div>
+
           <div id="unifiedFields">
             <div class="row">
               <div>
@@ -1425,6 +1469,7 @@
               <option value="14">14</option>
               <option value="12">12</option>
             </select>
+            <div class="help" id="payMonthsHelp"></div>
           </div>
         </div>
 
@@ -1531,6 +1576,7 @@
         <li><a href="/articles/pos-ypologizetai-o-katharos-misthos.html">Πώς υπολογίζεται ο καθαρός μισθός</a>, βήμα-βήμα με παράδειγμα</li>
         <li><a href="/articles/doro-xristougennon-2026-pasxa-2027.html">Δώρο Χριστουγέννων 2026 και Πάσχα 2027</a>: καθαρά ανά μισθό</li>
         <li><a href="/articles/epidoma-adeias-2027.html">Επίδομα αδείας 2027</a> και <a href="/articles/argies-2027.html">αργίες 2027</a></li>
+        <li><a href="/articles/misthos-ekpaideftikon-2027.html">Μισθός εκπαιδευτικών 2027</a>: μόνιμοι, νεοδιόριστοι, αναπληρωτές</li>
         <li><a href="/articles/mpokaki-2027.html">Μπλοκάκι 2027</a>: εισφορές, φόρος και τεκμαρτό</li>
         <li>Για επιχειρήσεις: <a href="/ergodotes.html">κόστος εργοδότη ανά μισθό</a></li>
       </ul>
@@ -1744,6 +1790,19 @@
       { key: 'efka', label: 'ΕΦΚΑ κύρια σύνταξη', rate: 0.0667 },
       { key: 'solidarity', label: 'Εισφορά αλληλεγγύης (ανεργία)', rate: 0.02 }
     ];
+
+    // Εκπαιδευτικοί: ίδιοι βασικοί με το ενιαίο μισθολόγιο (ΠΕ/ΤΕ), κλιμάκιο ανά 2 έτη υπηρεσίας.
+    // Μόνιμοι: όλες οι κρατήσεις μαζί με ΜΤΠΥ (22,22%). Νεοδιόριστοι: επιπλέον δικαίωμα εγγραφής
+    // στο ΜΤΠΥ, ίσο με τις μικτές του πρώτου πλήρους μήνα, σε 12 μηνιαίες δόσεις.
+    // Αναπληρωτές: εισφορές μισθωτών e-ΕΦΚΑ 13,37%, χωρίς ΜΤΠΥ και ΤΠΔΥ, φόρος σε 12 μήνες.
+    // Επαλήθευση με τους πίνακες του alfavita (13/10/2026): μόνιμος ΠΕ ΜΚ1 923,0 €, αναπληρωτής ΜΚ1 1.009,0 €.
+    const MTPY_ENTRY_INSTALLMENTS = 12;
+    const SUBSTITUTE_RATE = 0.1337;
+
+    function teacherMk(cat, years, degree){
+      const s = PUBLIC_SCALES[cat] || PUBLIC_SCALES.PE;
+      return Math.min(s.count, Math.floor((Math.max(0, years) + degree) / s.years) + 1);
+    }
 
     // Νέο μόνιμο επίδομα Χριστουγέννων στο Δημόσιο, Δεκέμβριος 2027 (προσχέδιο προϋπολογισμού 2027).
     const PUBLIC_XMAS_2027 = 500;
@@ -2059,7 +2118,12 @@
         uniBorder: document.getElementById('uniBorder').checked,
         annexTable: val('annexTable'),
         annexCol: n(val('annexCol'), 0),
-        annexMk: n(val('annexMk'), 1)
+        annexMk: n(val('annexMk'), 1),
+        teacherStatus: val('teacherStatus'),
+        teacherCat: val('teacherCat'),
+        teacherYears: n(val('teacherYears'), 0),
+        teacherDegree: n(val('teacherDegree'), 0),
+        teacherPosition: n(val('teacherPosition'), 0)
       };
     }
 
@@ -2074,6 +2138,13 @@
         base = publicBase(p.cat, p.mk);
         baseLabel = `${PUBLIC_SCALES[p.cat].label} ΜΚ${p.mk}`;
         if(p.position) allowances.push(['Επίδομα θέσης ευθύνης', p.position]);
+      } else if(p.publicMode === 'teachers'){
+        const mk = teacherMk(p.teacherCat, p.teacherYears, p.teacherDegree);
+        base = publicBase(p.teacherCat, mk);
+        baseLabel = `${PUBLIC_SCALES[p.teacherCat].label} ΜΚ${mk}`;
+        if(p.teacherPosition) allowances.push(['Επίδομα θέσης ευθύνης', p.teacherPosition]);
+        // Οι μόνιμοι και οι νεοδιόριστοι είναι υποχρεωτικά μέτοχοι του ΜΤΠΥ.
+        deductions = PUBLIC_DEDUCTIONS;
       } else if(p.publicMode === 'annex'){
         const a = annexBase(p.annexTable, p.annexCol, p.annexMk);
         base = a.amount;
@@ -2169,11 +2240,12 @@
         deductions = PUBLIC_DEDUCTIONS.filter(d => d.key !== 'mtpy' || p.mtpy);
       } else {
         const pay = publicPay(p);
+        family = p.familyOn ? familyAllowance(p.children) : 0;
+        if(p.publicMode === 'teachers' && p.teacherStatus === 'substitute') return computeSubstitute(p, pay, family);
         base = pay.base;
         baseLabel = pay.baseLabel;
         allowances = pay.allowances;
         deductions = pay.deductions;
-        family = p.familyOn ? familyAllowance(p.children) : 0;
         insurable = r2(base + allowances.reduce((s, a) => s + a[1], 0));
       }
 
@@ -2201,6 +2273,11 @@
       const taxableAnnual = r2(annualGross - annualContrib);
       const t = taxFor(p.year, taxableAnnual, p.ageBand, p.children);
 
+      // Νεοδιόριστος εκπαιδευτικός: δικαίωμα εγγραφής ΜΤΠΥ σε 12 δόσεις. Στα εκκαθαριστικά δεν
+      // μειώνει τον φόρο, γι' αυτό αφαιρείται μετά τον φόρο (όπως στα 819–820 € του ΜΚ1).
+      const mtpyEntry = p.publicMode === 'teachers' && p.teacherStatus === 'new'
+        ? r2(insurable / MTPY_ENTRY_INSTALLMENTS) : 0;
+
       return {
         sector: 'public',
         publicMode: p.publicMode,
@@ -2210,9 +2287,54 @@
         totalRate,
         empMonthly: contribMonthly,
         monthlyTax,
-        netMonthly,
+        mtpyEntry,
+        netRegular: netMonthly,
+        netMonthly: r2(netMonthly - mtpyEntry),
         bonus,
         bonusNet: bonus ? r2(bonus - bonusContrib - (t.tax - regularTax.tax)) : 0,
+        annualGross,
+        annualContrib,
+        taxableAnnual,
+        taxBefore: t.before,
+        credit: t.credit,
+        annualTax: t.tax,
+        netAnnual: r2(annualGross - annualContrib - t.tax - mtpyEntry * MTPY_ENTRY_INSTALLMENTS)
+      };
+    }
+
+    // Αναπληρωτές εκπαιδευτικοί: εισφορές μισθωτού e-ΕΦΚΑ όπως στον ιδιωτικό τομέα (με τη μείωση
+    // ΔΥΠΑ από 1/4/2027) και φόρος σε ετήσια βάση 12 μηνών. Η οικογενειακή παροχή δεν έχει εισφορές.
+    function computeSubstitute(p, pay, family){
+      const insurable = r2(pay.base + pay.allowances.reduce((s, a) => s + a[1], 0));
+      const gross = r2(insurable + family);
+      const cut = p.year === 2027 ? DYPA_CUT_2027 : 0;
+      const insured = Math.min(insurable, p.cap);
+      const contribMonthly = r2(insured * (SUBSTITUTE_RATE - cut));
+      const contribBeforeCut = r2(insured * SUBSTITUTE_RATE);
+      const annualGross = r2(gross * 12);
+      const annualContrib = cut
+        ? r2(contribBeforeCut * MONTHS_BEFORE_CUT_2027 + contribMonthly * (12 - MONTHS_BEFORE_CUT_2027))
+        : r2(contribMonthly * 12);
+      const taxableAnnual = r2(annualGross - annualContrib);
+      const t = taxFor(p.year, taxableAnnual, p.ageBand, p.children);
+      const monthlyTax = r2(t.tax / 12);
+
+      return {
+        sector: 'public',
+        publicMode: p.publicMode,
+        substitute: true,
+        base: pay.base, baseLabel: pay.baseLabel, allowances: pay.allowances, family,
+        gross,
+        lines: [{ label: 'Εισφορές μισθωτού e-ΕΦΚΑ', rate: SUBSTITUTE_RATE - cut, amount: contribMonthly }],
+        totalRate: insurable > 0 ? contribMonthly / insurable : 0,
+        empMonthly: contribMonthly,
+        empMonthlyBeforeCut: cut ? contribBeforeCut : null,
+        netMonthlyBeforeCut: cut ? r2(gross - contribBeforeCut - monthlyTax) : null,
+        monthlyTax,
+        mtpyEntry: 0,
+        netMonthly: r2(gross - contribMonthly - monthlyTax),
+        bonus: 0,
+        bonusNet: 0,
         annualGross,
         annualContrib,
         taxableAnnual,
@@ -2258,14 +2380,15 @@
       military: 'Ν. 5265/2026, με +40 € από 1/4/2026. Δεν περιλαμβάνονται νυχτερινά, επιδόματα κινδύνου (πτητικό, καταδυτικό κ.λπ.) και αποζημιώσεις αποστολών· πρόσθεσέ τα στα «Άλλα επιδόματα».',
       security: 'Ν. 5246/2025, με +40 € από 1/4/2026. Δεν περιλαμβάνονται πενθήμερα (46 €/ημέρα), νυχτερινά (3,33 €/ώρα) και επιδόματα ειδικών μονάδων· πρόσθεσέ τα στα «Άλλα επιδόματα».',
       annex: 'Βασικοί μισθοί από 1/4/2026 (παράρτημα εγκ. 54692 ΕΞ/2026), με κρατήσεις δημοσίου υπαλλήλου. Ειδικά επιδόματα του κλάδου (π.χ. εφημερίες, επίδομα ειδικών συνθηκών) μπαίνουν στα «Άλλα επιδόματα».',
-      special: 'Με κρατήσεις μόνιμου δημοσίου υπαλλήλου (ενιαίο μισθολόγιο).'
+      special: 'Με κρατήσεις μόνιμου δημοσίου υπαλλήλου (ενιαίο μισθολόγιο).',
+      teachers: 'Βασικοί του ενιαίου μισθολογίου από 1/4/2026 (εγκ. 54692 ΕΞ/2026), ένα κλιμάκιο ανά 2 έτη. Μόνιμοι: κρατήσεις 22,22% μαζί με ΜΤΠΥ. Αναπληρωτές: εισφορές μισθωτού e-ΕΦΚΑ, χωρίς ΜΤΠΥ και ΤΠΔΥ, φόρος σε 12 μήνες.'
     };
 
     function renderResults(p, r){
       const isPublic = r.sector === 'public';
       const reverse = p.direction === 'net' && !fixedPublicPay(p);
       const months = isPublic ? 12 : p.payMonths;
-      const yearNote = p.year === 2027 && !isPublic ? ' (από 1/4/2027)' : '';
+      const yearNote = p.year === 2027 && (!isPublic || r.substitute) ? ' (από 1/4/2027)' : '';
       let html = '';
 
       if(reverse){
@@ -2295,7 +2418,13 @@
       }
 
       html += row('Παρακρατούμενος φόρος', euro(r.monthlyTax));
-      html += row('Καθαρός μηνιαίος' + yearNote, euro(r.netMonthly), 'total');
+      if(r.mtpyEntry){
+        html += row('Δικαίωμα εγγραφής ΜΤΠΥ (1/12 των μικτών, 12 δόσεις)', euro(r.mtpyEntry));
+        html += row('Καθαρός μηνιαίος τους πρώτους 12 μήνες', euro(r.netMonthly), 'total');
+        html += `<div class="note">Μετά τις 12 δόσεις ο καθαρός γίνεται ${euro(r.netRegular)}, όσο ενός μόνιμου στο ίδιο κλιμάκιο. Αν αναγνωριστεί προϋπηρεσία και ανέβει το κλιμάκιο, κρατείται και η διαφορά του δικαιώματος εγγραφής.</div>`;
+      } else {
+        html += row('Καθαρός μηνιαίος' + yearNote, euro(r.netMonthly), 'total');
+      }
 
       if(r.netMonthlyBeforeCut !== null && r.netMonthlyBeforeCut !== undefined){
         html += `<div class="note">Ιανουάριος–Μάρτιος 2027 οι εισφορές είναι ${euro(r.empMonthlyBeforeCut)} και ο καθαρός ${euro(r.netMonthlyBeforeCut)}. Από 1/4/2027 η εισφορά ανεργίας του εργαζομένου πέφτει κατά 0,5 μονάδα (σχέδιο νόμου).</div>`;
@@ -2313,6 +2442,7 @@
       html += row('Φόρος πριν την έκπτωση', euro(r.taxBefore));
       html += row('Έκπτωση φόρου', euro(r.credit));
       html += row('Ετήσιος φόρος', euro(r.annualTax));
+      if(r.mtpyEntry) html += row('Δικαίωμα εγγραφής ΜΤΠΥ (12 δόσεις)', euro(r.mtpyEntry * MTPY_ENTRY_INSTALLMENTS));
       html += row('Καθαρές ετήσιες αποδοχές', euro(r.netAnnual), 'total');
       html += '</div>';
 
@@ -2338,9 +2468,13 @@
     function updateBadge(p){
       const parts = [`Έτος: ${p.year}`];
       if(p.sector === 'public'){
-        const modes = { unified: 'Ενιαίο', military: 'Ένοπλες Δυνάμεις', security: 'Σώματα Ασφαλείας', annex: 'Ειδικό μισθολόγιο', special: 'Δημόσιο' };
+        const modes = { unified: 'Ενιαίο', teachers: 'Εκπαιδευτικός', military: 'Ένοπλες Δυνάμεις', security: 'Σώματα Ασφαλείας', annex: 'Ειδικό μισθολόγιο', special: 'Δημόσιο' };
         parts.push(modes[p.publicMode] || 'Δημόσιο');
         if(p.publicMode === 'unified') parts.push(`${PUBLIC_SCALES[p.cat].label} ΜΚ${p.mk}`);
+        if(p.publicMode === 'teachers'){
+          parts.push({ permanent: 'Μόνιμος', new: 'Νεοδιόριστος', substitute: 'Αναπληρωτής' }[p.teacherStatus]);
+          parts.push(`${PUBLIC_SCALES[p.teacherCat].label} ΜΚ${teacherMk(p.teacherCat, p.teacherYears, p.teacherDegree)}`);
+        }
       } else {
         if(p.repat) parts.push('5Γ');
         if(p.role === 'engineer') parts.push(`Μηχ. κλ.${p.engClass}`);
@@ -2503,14 +2637,29 @@
       show('securityFields', mode === 'security');
       show('uniformExtras', mode === 'military' || mode === 'security');
       show('annexFields', mode === 'annex');
+      show('teacherFields', mode === 'teachers');
       show('allowWrap', fixed);
       show('mtpyWrap', mode === 'unified' || mode === 'annex' || mode === 'special');
       show('amountWrap', !fixed);
       show('directionWrap', !fixed);
-      show('xmasWrap', isPublic && p.year === 2027);
+      const substitute = mode === 'teachers' && p.teacherStatus === 'substitute';
+      show('xmasWrap', isPublic && p.year === 2027 && !substitute);
+
+      if(mode === 'teachers'){
+        const mk = teacherMk(p.teacherCat, p.teacherYears, p.teacherDegree);
+        const extra = p.teacherDegree ? ` (μαζί με ${p.teacherDegree} έτη για τον τίτλο)` : '';
+        document.getElementById('teacherMkHelp').textContent =
+          `Κλιμάκιο: ${PUBLIC_SCALES[p.teacherCat].label} ΜΚ${mk}${extra}, βασικός ${euro(publicBase(p.teacherCat, mk))}. Ένα κλιμάκιο ανά 2 έτη υπηρεσίας.`;
+        document.getElementById('teacherStatusHelp').textContent = {
+          permanent: 'Κρατήσεις 22,22%: e-ΕΦΚΑ 6,67%, ΤΠΔΥ 4%, ΜΤΠΥ 4,5%, ΤΕΑΔΥ 3%, υγεία 2,05%, ανεργία 2%.',
+          new: 'Όπως ο μόνιμος, συν το δικαίωμα εγγραφής στο ΜΤΠΥ: οι μικτές του πρώτου μήνα, σε 12 μηνιαίες δόσεις.',
+          substitute: 'Εισφορές μισθωτού e-ΕΦΚΑ 13,37% (12,87% από 1/4/2027), χωρίς ΜΤΠΥ και ΤΠΔΥ. Ο φόρος υπολογίζεται σε 12 μήνες.'
+        }[p.teacherStatus];
+      }
 
       const helps = {
-        unified: 'Διοικητικοί υπάλληλοι, εκπαιδευτικοί, ΟΤΑ, νοσηλευτές και όσοι δεν έχουν ειδικό μισθολόγιο.',
+        unified: 'Διοικητικοί υπάλληλοι, ΟΤΑ, νοσηλευτές και όσοι δεν έχουν ειδικό μισθολόγιο. Για εκπαιδευτικούς διάλεξε «Εκπαιδευτικοί».',
+        teachers: 'Νηπιαγωγοί, δάσκαλοι και καθηγητές σχολείων, μόνιμοι ή αναπληρωτές.',
         military: 'Αξιωματικοί, υπαξιωματικοί και ΕΠΟΠ Στρατού, Ναυτικού, Αεροπορίας (ισχύει από 1/10/2025).',
         security: 'Αστυνομικοί, πυροσβέστες, λιμενικοί, ειδικοί φρουροί, συνοριοφύλακες (ισχύει από 1/10/2025).',
         annex: 'Δικαστικοί, ΝΣΚ, γιατροί ΕΣΥ, ιατροδικαστές, ΔΕΠ, ερευνητές, διπλωματικοί, αρχιερείς, μουσικοί κρατικών ορχηστρών.',
@@ -2535,7 +2684,26 @@
       });
     });
 
-    ['publicMode', 'taxYear'].forEach(id => document.getElementById(id).addEventListener('change', syncForm));
+    ['publicMode', 'taxYear', 'teacherStatus', 'teacherCat', 'teacherDegree'].forEach(id => document.getElementById(id).addEventListener('change', syncForm));
+    document.getElementById('teacherYears').addEventListener('input', syncForm);
+
+    // 14 ↔ 12 μισθοί: το ποσό αλλάζει ώστε να μένουν ίδιες οι ετήσιες αποδοχές
+    // (1.000 € × 14 = 1.166,67 € × 12), γιατί στους 12 τα δώρα μοιράζονται στους μήνες.
+    let lastPayMonths = 14;
+    document.getElementById('payMonths').addEventListener('change', function(){
+      const months = n(this.value, 14);
+      const input = document.getElementById('gross');
+      const amount = n(input.value, 0);
+      const help = document.getElementById('payMonthsHelp');
+      if(amount > 0 && months !== lastPayMonths){
+        const converted = r2(amount * lastPayMonths / months);
+        input.value = converted;
+        help.textContent = `Ίδιες ετήσιες αποδοχές: ${lastPayMonths} × ${euro(amount)} = ${months} × ${euro(converted)}.`;
+      } else {
+        help.textContent = months === 12 ? 'Τα δώρα και το επίδομα αδείας είναι μοιρασμένα στους 12 μισθούς.' : '';
+      }
+      lastPayMonths = months;
+    });
     document.getElementById('publicCat').addEventListener('change', fillMkOptions);
     document.getElementById('milCat').addEventListener('change', fillMilGrades);
     document.getElementById('secCat').addEventListener('change', fillSecRanks);
@@ -2646,6 +2814,13 @@
       document.getElementById('annexCol').innerHTML = '';
       fillAnnexCols();
       document.getElementById('annexMk').value = '1';
+      document.getElementById('teacherStatus').value = 'permanent';
+      document.getElementById('teacherCat').value = 'PE';
+      document.getElementById('teacherYears').value = '0';
+      document.getElementById('teacherDegree').value = '0';
+      document.getElementById('teacherPosition').value = '0';
+      lastPayMonths = 14;
+      document.getElementById('payMonthsHelp').textContent = '';
       setSeg('sectorSeg', 'private');
       setSeg('directionSeg', 'gross');
       syncForm();

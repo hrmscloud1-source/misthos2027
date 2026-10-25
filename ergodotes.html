@@ -801,11 +801,13 @@
     #militaryFields,
     #securityFields,
     #annexFields,
+    #teacherFields,
     #uniformExtras,
     #allowWrap,
     #militaryFields > label,
     #securityFields > label,
-    #annexFields > label{
+    #annexFields > label,
+    #teacherFields > label{
       margin-top:14px;
     }
 
@@ -1478,6 +1480,7 @@
               <option value="14" selected>14 (με δώρα και άδεια)</option>
               <option value="12">12</option>
             </select>
+            <div class="help" id="payMonthsHelp"></div>
           </div>
         </div>
 
@@ -2133,6 +2136,24 @@
     });
     document.getElementById('amount').addEventListener('keydown', e => { if(e.key === 'Enter') calc(); });
 
+    // 14 ↔ 12 μισθοί: το ποσό αλλάζει ώστε να μένουν ίδιες οι ετήσιες αποδοχές
+    // (1.000 € × 14 = 1.166,67 € × 12), γιατί στους 12 τα δώρα μοιράζονται στους μήνες.
+    let lastPayMonths = 14;
+    document.getElementById('payMonths').addEventListener('change', function(){
+      const months = n(this.value, 14);
+      const input = document.getElementById('amount');
+      const amount = n(input.value, 0);
+      const help = document.getElementById('payMonthsHelp');
+      if(amount > 0 && months !== lastPayMonths){
+        const converted = r2(amount * lastPayMonths / months);
+        input.value = converted;
+        help.textContent = `Ίδιο ετήσιο ποσό: ${lastPayMonths} × ${euro(amount)} = ${months} × ${euro(converted)}.`;
+      } else {
+        help.textContent = '';
+      }
+      lastPayMonths = months;
+    });
+
     document.getElementById('resetBtn').addEventListener('click', () => {
       document.getElementById('amount').value = '';
       document.getElementById('taxYear').value = '2027';
@@ -2141,6 +2162,8 @@
       document.getElementById('ageBand').value = '31+';
       document.getElementById('role').value = 'office';
       document.getElementById('payMonths').value = '14';
+      lastPayMonths = 14;
+      document.getElementById('payMonthsHelp').textContent = '';
       document.getElementById('employerRate').value = '0.2179';
       document.getElementById('employeeRate').value = '0.1337';
       document.getElementById('cap').value = '7761.94';
