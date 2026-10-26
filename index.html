@@ -2544,7 +2544,8 @@
         opt.textContent = `ΜΚ${k} · ${from}–${from + s.years} έτη`;
         sel.appendChild(opt);
       }
-      sel.value = String(Math.min(prev, s.count));
+      // Στην πρώτη φόρτωση η λίστα είναι άδεια (τιμή 0): ξεκινάμε από το 1ο κλιμάκιο.
+      sel.value = String(Math.max(1, Math.min(prev, s.count)));
     }
 
     function fillSelect(id, options, keep){
