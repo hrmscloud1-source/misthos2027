@@ -1502,10 +1502,10 @@
             <label for="ageBand">Ηλικία εργαζομένου</label>
             <select id="ageBand">
               <option value="<=25">έως 25</option>
-              <option value="26-30">25–30</option>
-              <option value="31+" selected>30+</option>
+              <option value="26-30">26–30</option>
+              <option value="31+" selected>31 και άνω</option>
             </select>
-            <div class="help" id="ageHelp">Αφορά την ηλικία σας την 01/01/2027.</div>
+            <div class="help" id="ageHelp">Μετράει το έτος γέννησης: έως 25 αν γεννήθηκες το 2002 ή μετά, 26–30 αν γεννήθηκες 1997–2001.</div>
           </div>
 
           <div id="payMonthsWrap">
@@ -2784,7 +2784,8 @@
       document.getElementById('calcBtnText').textContent = (p.direction === 'net' && !fixed)
         ? 'Υπολογισμός μικτού μισθού'
         : 'Υπολογισμός καθαρού μισθού';
-      document.getElementById('ageHelp').textContent = `Αφορά την ηλικία σας την 01/01/${p.year}.`;
+      // Η ηλικία για τις κλίμακες των νέων μετράει με το έτος γέννησης (φορολογικό έτος − έτος γέννησης).
+      document.getElementById('ageHelp').textContent = `Μετράει το έτος γέννησης: έως 25 αν γεννήθηκες το ${p.year - 25} ή μετά, 26–30 αν γεννήθηκες ${p.year - 30}–${p.year - 26}.`;
     }
 
     document.querySelectorAll('.seg button').forEach(b => {
