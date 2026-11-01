@@ -1,8 +1,8 @@
 # Ads.txt — misthos2027.gr
 # Συνδυασμός Google AdSense (direct) + Ezoic (reseller network)
-# Last Updated: 2026-06-17
+# Last Updated: 2026-11-01
 
-# Google AdSense — direct (ο δικός σου λογαριασμός)
+# Google AdSense — direct
 google.com, pub-4164020794215422, DIRECT, f08c47fec0942fa0
 
 # Ezoic network partners
