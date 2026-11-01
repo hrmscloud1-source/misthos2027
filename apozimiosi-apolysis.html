@@ -425,6 +425,188 @@
       font-weight:700;
     }
 
+    /* Επιπλέον ώρες: κουτιά που ανοίγουν με κλικ */
+    #otWrap{
+      margin-top:16px;
+    }
+
+    .ot-title{
+      font-size:13px;
+      font-weight:700;
+      color:var(--ink-2);
+    }
+
+    .ot-title small{
+      display:block;
+      margin-top:2px;
+      font-size:12px;
+      font-weight:400;
+      color:var(--mut);
+    }
+
+    .ot-grid{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0, 1fr));
+      gap:8px;
+      margin-top:10px;
+      align-items:start;
+    }
+
+    .ot-tile{
+      border:1px solid var(--line);
+      border-radius:12px;
+      background:#fff;
+      overflow:hidden;
+      transition:border-color .15s, background .15s, box-shadow .15s;
+    }
+
+    .ot-tile:hover{
+      border-color:rgba(99,102,241,.45);
+    }
+
+    .ot-tile.on{
+      border-color:var(--pri);
+      background:var(--soft);
+      box-shadow:0 4px 12px -6px rgba(79,70,229,.45);
+    }
+
+    .ot-head{
+      display:grid;
+      grid-template-columns:18px minmax(0, 1fr);
+      column-gap:8px;
+      align-items:center;
+      width:100%;
+      padding:10px 11px;
+      border:0;
+      border-radius:0;
+      background:transparent;
+      color:var(--ink);
+      font-size:13px;
+      line-height:1.25;
+      text-align:left;
+    }
+
+    .ot-check{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:18px;
+      height:18px;
+      border:1.5px solid #cbd5e1;
+      border-radius:6px;
+      background:#fff;
+      color:transparent;
+      font-size:12px;
+      font-weight:900;
+      transition:background .15s, border-color .15s;
+    }
+
+    .ot-tile.on .ot-check{
+      border-color:var(--pri);
+      background:var(--pri);
+      color:#fff;
+    }
+
+    .ot-pct{
+      color:var(--pri);
+      font-size:12px;
+      font-weight:800;
+      white-space:nowrap;
+    }
+
+    .ot-when{
+      grid-column:2;
+      margin-top:2px;
+      color:var(--mut);
+      font-size:11.5px;
+      font-weight:500;
+    }
+
+    .ot-body{
+      display:none;
+      padding:0 11px 11px;
+    }
+
+    .ot-tile.on .ot-body{
+      display:block;
+      animation:otIn .2s ease-out;
+    }
+
+    @keyframes otIn{
+      from{ opacity:0; transform:translateY(-4px); }
+      to{ opacity:1; transform:none; }
+    }
+
+    .ot-stepper{
+      display:grid;
+      grid-template-columns:34px minmax(0, 1fr) 34px;
+      gap:4px;
+      align-items:center;
+    }
+
+    .ot-stepper button{
+      height:34px;
+      padding:0;
+      border:1px solid rgba(99,102,241,.3);
+      border-radius:9px;
+      background:#fff;
+      color:var(--pri-dark);
+      font-size:17px;
+      line-height:1;
+    }
+
+    .ot-stepper button:hover{
+      background:var(--soft);
+    }
+
+    .ot-stepper input[type="number"]{
+      height:34px;
+      padding:0 2px;
+      border-radius:9px;
+      font-size:14px;
+      font-weight:700;
+      text-align:center;
+      -moz-appearance:textfield;
+      appearance:textfield;
+    }
+
+    .ot-stepper input::-webkit-outer-spin-button,
+    .ot-stepper input::-webkit-inner-spin-button{
+      margin:0;
+      -webkit-appearance:none;
+    }
+
+    .ot-amount{
+      margin-top:6px;
+      color:var(--pri-dark);
+      font-size:12px;
+      font-weight:700;
+      text-align:center;
+    }
+
+    #otInfo{
+      margin-top:8px;
+    }
+
+    #otInfo a{
+      color:var(--pri);
+      font-weight:600;
+    }
+
+    .result .ot-how{
+      display:block;
+      margin-top:1px;
+      color:var(--mut);
+      font-size:12px;
+      font-weight:400;
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .ot-tile.on .ot-body{
+        animation:none;
+      }
+    }
+
     /* Advanced details */
     details.advanced{
       margin-top:14px;

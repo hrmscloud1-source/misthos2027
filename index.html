@@ -427,6 +427,188 @@
       font-weight:700;
     }
 
+    /* Επιπλέον ώρες: κουτιά που ανοίγουν με κλικ */
+    #otWrap{
+      margin-top:16px;
+    }
+
+    .ot-title{
+      font-size:13px;
+      font-weight:700;
+      color:var(--ink-2);
+    }
+
+    .ot-title small{
+      display:block;
+      margin-top:2px;
+      font-size:12px;
+      font-weight:400;
+      color:var(--mut);
+    }
+
+    .ot-grid{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0, 1fr));
+      gap:8px;
+      margin-top:10px;
+      align-items:start;
+    }
+
+    .ot-tile{
+      border:1px solid var(--line);
+      border-radius:12px;
+      background:#fff;
+      overflow:hidden;
+      transition:border-color .15s, background .15s, box-shadow .15s;
+    }
+
+    .ot-tile:hover{
+      border-color:rgba(99,102,241,.45);
+    }
+
+    .ot-tile.on{
+      border-color:var(--pri);
+      background:var(--soft);
+      box-shadow:0 4px 12px -6px rgba(79,70,229,.45);
+    }
+
+    .ot-head{
+      display:grid;
+      grid-template-columns:18px minmax(0, 1fr);
+      column-gap:8px;
+      align-items:center;
+      width:100%;
+      padding:10px 11px;
+      border:0;
+      border-radius:0;
+      background:transparent;
+      color:var(--ink);
+      font-size:13px;
+      line-height:1.25;
+      text-align:left;
+    }
+
+    .ot-check{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:18px;
+      height:18px;
+      border:1.5px solid #cbd5e1;
+      border-radius:6px;
+      background:#fff;
+      color:transparent;
+      font-size:12px;
+      font-weight:900;
+      transition:background .15s, border-color .15s;
+    }
+
+    .ot-tile.on .ot-check{
+      border-color:var(--pri);
+      background:var(--pri);
+      color:#fff;
+    }
+
+    .ot-pct{
+      color:var(--pri);
+      font-size:12px;
+      font-weight:800;
+      white-space:nowrap;
+    }
+
+    .ot-when{
+      grid-column:2;
+      margin-top:2px;
+      color:var(--mut);
+      font-size:11.5px;
+      font-weight:500;
+    }
+
+    .ot-body{
+      display:none;
+      padding:0 11px 11px;
+    }
+
+    .ot-tile.on .ot-body{
+      display:block;
+      animation:otIn .2s ease-out;
+    }
+
+    @keyframes otIn{
+      from{ opacity:0; transform:translateY(-4px); }
+      to{ opacity:1; transform:none; }
+    }
+
+    .ot-stepper{
+      display:grid;
+      grid-template-columns:34px minmax(0, 1fr) 34px;
+      gap:4px;
+      align-items:center;
+    }
+
+    .ot-stepper button{
+      height:34px;
+      padding:0;
+      border:1px solid rgba(99,102,241,.3);
+      border-radius:9px;
+      background:#fff;
+      color:var(--pri-dark);
+      font-size:17px;
+      line-height:1;
+    }
+
+    .ot-stepper button:hover{
+      background:var(--soft);
+    }
+
+    .ot-stepper input[type="number"]{
+      height:34px;
+      padding:0 2px;
+      border-radius:9px;
+      font-size:14px;
+      font-weight:700;
+      text-align:center;
+      -moz-appearance:textfield;
+      appearance:textfield;
+    }
+
+    .ot-stepper input::-webkit-outer-spin-button,
+    .ot-stepper input::-webkit-inner-spin-button{
+      margin:0;
+      -webkit-appearance:none;
+    }
+
+    .ot-amount{
+      margin-top:6px;
+      color:var(--pri-dark);
+      font-size:12px;
+      font-weight:700;
+      text-align:center;
+    }
+
+    #otInfo{
+      margin-top:8px;
+    }
+
+    #otInfo a{
+      color:var(--pri);
+      font-weight:600;
+    }
+
+    .result .ot-how{
+      display:block;
+      margin-top:1px;
+      color:var(--mut);
+      font-size:12px;
+      font-weight:400;
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .ot-tile.on .ot-body{
+        animation:none;
+      }
+    }
+
     /* Advanced details */
     details.advanced{
       margin-top:14px;
@@ -1569,6 +1751,75 @@
           <span><strong>Επαναπατρισθείς άρθρο 5Γ</strong> — 50% απαλλαγή φόρου μισθωτών</span>
         </label>
 
+        <div id="otWrap">
+          <div class="ot-title">Έκανες επιπλέον ώρες αυτόν τον μήνα;
+            <small>Πάτα ό,τι ισχύει και βάλε τις ώρες του μήνα. Μπαίνουν στον καθαρό μισθό.</small>
+          </div>
+          <div class="ot-grid">
+            <div class="ot-tile" data-ot="overwork" data-start="5">
+              <button type="button" class="ot-head" aria-pressed="false">
+                <span class="ot-check" aria-hidden="true">✓</span>
+                <span>Υπερεργασία</span>
+                <span class="ot-when"><span class="ot-pct">+20%</span> 41η έως 45η ώρα</span>
+              </button>
+              <div class="ot-body">
+                <div class="ot-stepper">
+                  <button type="button" data-step="-1" aria-label="Μία ώρα λιγότερη">−</button>
+                  <input type="number" min="0" max="300" step="0.5" inputmode="decimal" aria-label="Ώρες τον μήνα: Υπερεργασία" />
+                  <button type="button" data-step="1" aria-label="Μία ώρα περισσότερη">+</button>
+                </div>
+                <div class="ot-amount"></div>
+              </div>
+            </div>
+            <div class="ot-tile" data-ot="overtime" data-start="4">
+              <button type="button" class="ot-head" aria-pressed="false">
+                <span class="ot-check" aria-hidden="true">✓</span>
+                <span>Υπερωρία</span>
+                <span class="ot-when"><span class="ot-pct">+40%</span> πάνω από 45 ώρες</span>
+              </button>
+              <div class="ot-body">
+                <div class="ot-stepper">
+                  <button type="button" data-step="-1" aria-label="Μία ώρα λιγότερη">−</button>
+                  <input type="number" min="0" max="300" step="0.5" inputmode="decimal" aria-label="Ώρες τον μήνα: Υπερωρία" />
+                  <button type="button" data-step="1" aria-label="Μία ώρα περισσότερη">+</button>
+                </div>
+                <div class="ot-amount"></div>
+              </div>
+            </div>
+            <div class="ot-tile" data-ot="night" data-start="8">
+              <button type="button" class="ot-head" aria-pressed="false">
+                <span class="ot-check" aria-hidden="true">✓</span>
+                <span>Νυχτερινά</span>
+                <span class="ot-when"><span class="ot-pct">+25%</span> 22:00 έως 06:00</span>
+              </button>
+              <div class="ot-body">
+                <div class="ot-stepper">
+                  <button type="button" data-step="-1" aria-label="Μία ώρα λιγότερη">−</button>
+                  <input type="number" min="0" max="300" step="0.5" inputmode="decimal" aria-label="Ώρες τον μήνα: Νυχτερινά" />
+                  <button type="button" data-step="1" aria-label="Μία ώρα περισσότερη">+</button>
+                </div>
+                <div class="ot-amount"></div>
+              </div>
+            </div>
+            <div class="ot-tile" data-ot="sunday" data-start="8">
+              <button type="button" class="ot-head" aria-pressed="false">
+                <span class="ot-check" aria-hidden="true">✓</span>
+                <span>Κυριακές, αργίες</span>
+                <span class="ot-when"><span class="ot-pct">+75%</span> ώρες σε αυτές τις μέρες</span>
+              </button>
+              <div class="ot-body">
+                <div class="ot-stepper">
+                  <button type="button" data-step="-1" aria-label="Μία ώρα λιγότερη">−</button>
+                  <input type="number" min="0" max="300" step="0.5" inputmode="decimal" aria-label="Ώρες τον μήνα: Κυριακές, αργίες" />
+                  <button type="button" data-step="1" aria-label="Μία ώρα περισσότερη">+</button>
+                </div>
+                <div class="ot-amount"></div>
+              </div>
+            </div>
+          </div>
+          <div class="help" id="otInfo" style="display:none;"></div>
+        </div>
+
         <details class="advanced">
           <summary>Προχωρημένες ρυθμίσεις (συντελεστές)</summary>
 
@@ -2170,6 +2421,50 @@
       return 70 + 50 * Math.min(children - 1, 3) + 70 * Math.max(0, children - 4);
     }
 
+    // Επιπλέον ώρες πλήρους απασχόλησης: ίδιοι κανόνες με τη σελίδα /yperories.html.
+    // Υπερεργασία και υπερωρία πληρώνουν ωρομίσθιο + προσαύξηση, νυχτερινά και Κυριακές μόνο την προσαύξηση.
+    // Εισφορές μόνο στη βασική αξία των επιπλέον ωρών (εγκ. e-ΕΦΚΑ 21/2025).
+    const OT_KINDS = {
+      overwork: { label: 'Υπερεργασία', pct: 0.20, extra: true },
+      overtime: { label: 'Υπερωρία', pct: 0.40, extra: true },
+      night: { label: 'Νυχτερινά', pct: 0.25, extra: false },
+      sunday: { label: 'Κυριακές, αργίες', pct: 0.75, extra: false }
+    };
+
+    function readOvertime(){
+      const hours = {};
+      document.querySelectorAll('.ot-tile').forEach(t => {
+        hours[t.dataset.ot] = t.classList.contains('on') ? Math.max(0, n(t.querySelector('input').value, 0)) : 0;
+      });
+      return hours;
+    }
+
+    // Το ωρομίσθιο βγαίνει από τον μισθό χωρίς τα δώρα: στους 12 μισθούς είναι μοιρασμένα μέσα στο ποσό.
+    function otHourly(p, gross){
+      return gross * p.payMonths / 14 / 25 * 6 / 40;
+    }
+
+    function otLine(key, h, hourly){
+      const k = OT_KINDS[key];
+      const perHour = (k.extra ? hourly : 0) + hourly * k.pct;
+      const amount = r2(h * perHour);
+      const premium = r2(h * hourly * k.pct);
+      return { key, label: k.label, pct: k.pct, extra: k.extra, hours: h, perHour, amount, premium };
+    }
+
+    function overtimePay(p, gross){
+      const lines = [];
+      if(p.sector === 'private' && p.direction !== 'net' && gross > 0){
+        const hourly = otHourly(p, gross);
+        Object.keys(OT_KINDS).forEach(key => { if(p.ot[key] > 0) lines.push(otLine(key, p.ot[key], hourly)); });
+      }
+      const amount = r2(lines.reduce((a, l) => a + l.amount, 0));
+      const premiums = r2(lines.reduce((a, l) => a + l.premium, 0));
+      // Το πλαφόν είναι του μήνα: ό,τι έχει καλύψει ήδη ο μισθός δεν ξαναμετράει.
+      const insurable = Math.max(0, Math.min(amount - premiums, p.cap - Math.min(gross, p.cap)));
+      return { lines, amount, premiums, insurable: r2(insurable) };
+    }
+
     function readInputs(){
       const val = id => document.getElementById(id).value;
       return {
@@ -2185,6 +2480,7 @@
         repat: document.getElementById('repat').checked,
         trieties: n(val('trieties').replace('w', ''), 0),
         trietiesWorker: val('trieties').startsWith('w'),
+        ot: readOvertime(),
         empRate: n(val('efkaEmployee'), 0.1337),
         employerRate: n(val('efkaEmployer'), 0.2179),
         cap: n(val('efkaCap'), 7761.94),
@@ -2291,26 +2587,49 @@
         employerMonthly = r2(employerMonthly + engEpikourikiErg);
       }
 
-      const annualGross = r2(gross * p.payMonths);
-      const annualContrib = cut
+      const annualGrossBase = r2(gross * p.payMonths);
+      const annualContribBase = cut
         ? r2(empMonthlyBeforeCut * MONTHS_BEFORE_CUT_2027 + empMonthly * (p.payMonths - MONTHS_BEFORE_CUT_2027))
         : r2(empMonthly * p.payMonths);
+
+      // Οι επιπλέον ώρες μετράνε στους 12 εργάσιμους μήνες, όχι στα δώρα, σαν να είναι ίδιες κάθε μήνα.
+      const ot = overtimePay(p, gross);
+      const otContrib = r2(ot.insurable * (empRate - cut));
+      const otContribBeforeCut = r2(ot.insurable * empRate);
+      const otEmployer = r2(ot.insurable * p.employerRate);
+      const otAnnualContrib = cut
+        ? r2(otContribBeforeCut * MONTHS_BEFORE_CUT_2027 + otContrib * (12 - MONTHS_BEFORE_CUT_2027))
+        : r2(otContrib * 12);
+
+      const annualGross = r2(annualGrossBase + ot.amount * 12);
+      const annualContrib = r2(annualContribBase + otAnnualContrib);
       const taxableAnnual = r2(annualGross - annualContrib);
       const taxableForTax = p.repat ? r2(taxableAnnual * 0.5) : taxableAnnual;
       const t = taxFor(p.year, taxableForTax, p.ageBand, p.children);
-      const monthlyTax = r2(t.tax / p.payMonths);
-      const employerMonthlyCost = r2(gross + employerMonthly);
+      // Ο φόρος του μισθού μένει σε 14 ή 12 δόσεις, ό,τι προσθέτουν οι ώρες μοιράζεται στους 12 μήνες.
+      const taxableBase = r2(annualGrossBase - annualContribBase);
+      const baseAnnualTax = ot.amount ? taxFor(p.year, p.repat ? r2(taxableBase * 0.5) : taxableBase, p.ageBand, p.children).tax : t.tax;
+      const taxableOt = r2(taxableBase + (ot.amount - otContrib) * 12);
+      const otTax = ot.amount ? r2((taxFor(p.year, p.repat ? r2(taxableOt * 0.5) : taxableOt, p.ageBand, p.children).tax - baseAnnualTax) / 12) : 0;
+      const monthlyTax = r2(r2(baseAnnualTax / p.payMonths) + otTax);
+      const employerMonthlyCost = r2(gross + ot.amount + employerMonthly + otEmployer);
+      const payTotal = r2(gross + ot.amount);
+      empMonthly = r2(empMonthly + otContrib);
+      empMonthlyBeforeCut = r2(empMonthlyBeforeCut + otContribBeforeCut);
+      employerMonthly = r2(employerMonthly + otEmployer);
 
       return {
         sector: 'private',
         gross,
+        ot: { ...ot, contrib: otContrib, tax: otTax, net: r2(ot.amount - otContrib - otTax), hourly: otHourly(p, gross) },
+        payTotal,
         empMonthly,
         empMonthlyBeforeCut: cut ? empMonthlyBeforeCut : null,
-        netMonthlyBeforeCut: cut ? r2(gross - empMonthlyBeforeCut - monthlyTax) : null,
+        netMonthlyBeforeCut: cut ? r2(payTotal - empMonthlyBeforeCut - monthlyTax) : null,
         engEpikourikiEmp, engEpikourikiErg, engPronoia,
         employerMonthly,
         monthlyTax,
-        netMonthly: r2(gross - empMonthly - monthlyTax),
+        netMonthly: r2(payTotal - empMonthly - monthlyTax),
         annualGross,
         annualContrib,
         taxableAnnual,
@@ -2320,7 +2639,7 @@
         annualTax: t.tax,
         netAnnual: r2(annualGross - annualContrib - t.tax),
         employerMonthlyCost,
-        employerAnnualCost: r2(employerMonthlyCost * p.payMonths)
+        employerAnnualCost: r2((gross + employerMonthly - otEmployer) * p.payMonths + (ot.amount + otEmployer) * 12)
       };
     }
 
@@ -2500,12 +2819,24 @@
             : row('Κατώτατος μισθός', euro(MIN_WAGE));
           html += row(`Κατώτατος με τριετίες (+${Math.round(p.trieties * 100)}%)`, euro(floor));
         }
-        html += row('Μικτός μηνιαίος', euro(r.gross));
+        html += row(r.ot && r.ot.lines.length ? 'Μικτός μισθός' : 'Μικτός μηνιαίος', euro(r.gross));
         if(floor){
           html += `<div class="note">${p.amount >= floor
             ? 'Ο μισθός σου είναι ήδη πάνω από τον κατώτατο με τις τριετίες, οπότε η τριετία συμψηφίζεται και ο μισθός δεν αλλάζει.'
             : `Η τριετία ανεβάζει τον μικτό κατά ${euro(floor - (p.amount || MIN_WAGE))} τον μήνα, στα ${euro(floor)}.`}</div>`;
         }
+      }
+
+      const ot = !isPublic && r.ot && r.ot.lines.length ? r.ot : null;
+      if(ot){
+        ot.lines.forEach(l => {
+          const hours = String(l.hours).replace('.', ',');
+          const how = l.extra
+            ? `${hours} ώρ. × ${euro(l.perHour)} (ωρομίσθιο +${Math.round(l.pct * 100)}%)`
+            : `${hours} ώρ. × ${euro(l.perHour)} (μόνο η προσαύξηση ${Math.round(l.pct * 100)}%)`;
+          html += row(`${l.label}<span class="ot-how">${how}</span>`, '+ ' + euro(l.amount));
+        });
+        html += row('Μικτά του μήνα', euro(r.payTotal), 'total gross-total');
       }
 
       if(isPublic){
@@ -2519,15 +2850,23 @@
           html += row('• Επικουρική (μηχανικού, 50%)', euro(r.engEpikourikiEmp), 'sub');
           html += row('• Πρόνοια / Εφάπαξ', euro(r.engPronoia), 'sub');
         }
+        if(ot) html += row(`• Στις επιπλέον ώρες, μόνο στη βασική τους αξία (${euro(ot.insurable)})`, euro(ot.contrib), 'sub');
       }
 
       html += row('Παρακρατούμενος φόρος', euro(r.monthlyTax));
+      if(ot) html += row('• Από τις επιπλέον ώρες', euro(ot.tax), 'sub');
       if(r.mtpyEntry){
         html += row('Δικαίωμα εγγραφής ΜΤΠΥ (1/12 των μικτών, 12 δόσεις)', euro(r.mtpyEntry));
         html += row('Καθαρός μηνιαίος τους πρώτους 12 μήνες', euro(r.netMonthly), 'total');
         html += `<div class="note">Μετά τις 12 δόσεις ο καθαρός γίνεται ${euro(r.netRegular)}, όσο ενός μόνιμου στο ίδιο κλιμάκιο. Αν αναγνωριστεί προϋπηρεσία και ανέβει το κλιμάκιο, κρατείται και η διαφορά του δικαιώματος εγγραφής.</div>`;
       } else {
         html += row('Καθαρός μηνιαίος' + yearNote, euro(r.netMonthly), 'total');
+      }
+
+      if(ot){
+        html += `<div class="note">Οι επιπλέον ώρες αφήνουν <strong>${euro(ot.net)} καθαρά</strong> τον μήνα, από ${euro(ot.amount)} μικτά. Ο φόρος και η ετήσια εικόνα μετράνε σαν να κάνεις τις ίδιες ώρες και τους 12 μήνες· τα δώρα μένουν με τον μισθό χωρίς τις ώρες.</div>`;
+        if(p.ot.overwork > 22) html += '<div class="note">Η υπερεργασία είναι έως 5 ώρες την εβδομάδα, περίπου 22 τον μήνα· ό,τι περισσεύει είναι υπερωρία με +40%.</div>';
+        if(p.ot.overtime > 12.5) html += '<div class="note">Με τόσες υπερωρίες κάθε μήνα ξεπερνάς το όριο των 150 ωρών τον χρόνο. Πάνω από το όριο χρειάζεται άδεια της Επιθεώρησης Εργασίας.</div>';
       }
 
       if(r.netMonthlyBeforeCut !== null && r.netMonthlyBeforeCut !== undefined){
@@ -2539,7 +2878,7 @@
       }
 
       html += '<div class="subsection-title">Ετήσια εικόνα</div><div class="compact">';
-      html += row(`Μικτές ετήσιες αποδοχές (${months} μισθοί${r.bonus ? ' + επίδομα' : ''})`, euro(r.annualGross));
+      html += row(`Μικτές ετήσιες αποδοχές (${months} μισθοί${r.bonus ? ' + επίδομα' : ''}${ot ? ' + ώρες 12 μηνών' : ''})`, euro(r.annualGross));
       html += row(isPublic ? 'Ετήσιες κρατήσεις' : 'Ετήσιες εισφορές εργαζομένου', euro(r.annualContrib));
       html += row('Ετήσιο φορολογητέο', euro(r.taxableAnnual));
       if(!isPublic && p.repat) html += row('Φορολογητέο με 5Γ', euro(r.taxableForTax));
@@ -2583,10 +2922,13 @@
         if(p.repat) parts.push('5Γ');
         if(p.trieties && p.direction !== 'net') parts.push(`Τριετίες +${Math.round(p.trieties * 100)}%`);
         if(p.role === 'engineer') parts.push(`Μηχ. κλ.${p.engClass}`);
+        if(p.direction !== 'net' && Object.values(p.ot).some(h => h > 0)) parts.push('Επιπλέον ώρες');
       }
       if(p.direction === 'net' && !fixedPublicPay(p)) parts.push('Καθαρά → μικτά');
       document.getElementById('badge').textContent = parts.join(' • ');
     }
+
+    let hasResult = false;
 
     function calc(){
       const p = readInputs();
@@ -2604,6 +2946,7 @@
       window.__lastNetSalary = r.netMonthly;
       updateBadge(p);
       renderResults(p, r);
+      hasResult = true;
     }
 
     function zeroResults(){
@@ -2729,6 +3072,57 @@
     }
 
     // Ποια πεδία φαίνονται: ιδιωτικός / δημόσιος, ενιαίο / ειδικό μισθολόγιο, μικτά / καθαρά.
+    // Σε κάθε κουτί: πόσα μικτά βγάζουν οι ώρες με τον μισθό που γράφτηκε, και το ωρομίσθιο από κάτω.
+    function syncOvertime(p){
+      const gross = Math.max(p.amount, trietiesFloor(p));
+      const hourly = otHourly(p, gross);
+      let anyOn = false;
+      document.querySelectorAll('.ot-tile').forEach(t => {
+        const on = t.classList.contains('on');
+        anyOn = anyOn || on;
+        const h = p.ot[t.dataset.ot];
+        t.querySelector('.ot-amount').textContent = on && gross > 0 && h > 0 ? '+ ' + euro(otLine(t.dataset.ot, h, hourly).amount) + ' μικτά' : '';
+      });
+      const info = document.getElementById('otInfo');
+      info.style.display = anyOn ? '' : 'none';
+      if(anyOn){
+        const rate = gross > 0
+          ? `Ωρομίσθιο <strong>${euro(hourly)}</strong> (μισθός χωρίς δώρα / 25 × 6 / 40), για πλήρη απασχόληση. `
+          : 'Γράψε τον μικτό μισθό για να βγει το ωρομίσθιο. ';
+        info.innerHTML = rate + 'Τα νυχτερινά και οι Κυριακές πληρώνουν μόνο την προσαύξηση, γιατί οι ώρες αυτές είναι ήδη στον μισθό. Μερική απασχόληση, 6η ημέρα, αδήλωτες ώρες: <a href="/yperories.html">αναλυτικός υπολογισμός υπερωριών</a>.';
+      }
+    }
+
+    // Με αποτέλεσμα στην οθόνη, κάθε αλλαγή στις ώρες το ενημερώνει αμέσως, χωρίς το εφέ του κουμπιού.
+    function otChanged(){
+      syncOvertime(readInputs());
+      if(!hasResult) return;
+      document.getElementById('results').classList.remove('reveal');
+      revealRun++;
+      calc();
+    }
+
+    document.querySelectorAll('.ot-tile').forEach(t => {
+      const input = t.querySelector('input');
+      const head = t.querySelector('.ot-head');
+      head.addEventListener('click', () => {
+        const on = t.classList.toggle('on');
+        head.setAttribute('aria-pressed', on ? 'true' : 'false');
+        if(on && !(n(input.value, 0) > 0)) input.value = t.dataset.start;
+        otChanged();
+      });
+      t.querySelectorAll('[data-step]').forEach(b => b.addEventListener('click', () => {
+        input.value = Math.max(0, Math.min(300, n(input.value, 0) + Number(b.dataset.step)));
+        otChanged();
+      }));
+      input.addEventListener('input', otChanged);
+    });
+
+    ['gross', 'trieties'].forEach(id => {
+      const el = document.getElementById(id);
+      el.addEventListener(el.tagName === 'SELECT' ? 'change' : 'input', () => syncOvertime(readInputs()));
+    });
+
     function syncForm(){
       const p = readInputs();
       const isPublic = p.sector === 'public';
@@ -2741,6 +3135,9 @@
 
       // Τριετίες: μόνο στον ιδιωτικό, από μικτά σε καθαρά, με πλαίσιο που εξηγεί τι αφορούν.
       show('trietiesWrap', !isPublic && p.direction !== 'net');
+      // Οι επιπλέον ώρες: μόνο στον ιδιωτικό, από μικτά σε καθαρά.
+      show('otWrap', !isPublic && p.direction !== 'net');
+      syncOvertime(p);
       const trietiesInfo = document.getElementById('trietiesInfo');
       if(p.trieties && !isPublic){
         const floor = trietiesFloor(p);
@@ -2828,6 +3225,7 @@
         help.textContent = months === 12 ? 'Τα δώρα και το επίδομα αδείας είναι μοιρασμένα στους 12 μισθούς.' : '';
       }
       lastPayMonths = months;
+      syncOvertime(readInputs());
     });
     document.getElementById('publicCat').addEventListener('change', fillMkOptions);
     document.getElementById('milCat').addEventListener('change', fillMilGrades);
@@ -2909,6 +3307,12 @@
       document.getElementById('engClass').value = '1';
       document.getElementById('engClassWrap').style.display = 'none';
       document.getElementById('repat').checked = false;
+      document.querySelectorAll('.ot-tile').forEach(t => {
+        t.classList.remove('on');
+        t.querySelector('.ot-head').setAttribute('aria-pressed', 'false');
+        t.querySelector('input').value = '';
+      });
+      hasResult = false;
       document.getElementById('trieties').value = '0';
       document.getElementById('efkaEmployee').value = '0.1337';
       document.getElementById('efkaEmployer').value = '0.2179';
