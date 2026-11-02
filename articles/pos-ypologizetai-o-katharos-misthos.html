@@ -162,6 +162,11 @@ article.article-card .table-wrap th{background:#115e59}
 article.article-card .cta-block h3{color:#fff}
 article.article-card .cta-block p{color:rgba(255,255,255,.86)}
 :focus-visible{outline:3px solid rgba(13,148,136,.4);outline-offset:2px}
+/* Η εξήγηση της ηλικίας φαίνεται μόνο όταν ο δείκτης ή η εστίαση είναι στο πεδίο (ζήτηση ιδιοκτήτη 02/11/2026) */
+.age-field{position:relative}
+.age-field .help{position:absolute;left:0;right:0;top:100%;z-index:30;margin-top:8px;padding:9px 12px;border-radius:10px;background:#10232b;color:#fff;font-size:12.5px;line-height:1.45;box-shadow:0 14px 30px -14px rgba(16,35,43,.55);opacity:0;visibility:hidden;transform:translateY(-4px);transition:opacity .15s,transform .15s,visibility .15s;pointer-events:none}
+.age-field .help::before{content:"";position:absolute;top:-5px;left:22px;width:10px;height:10px;border-radius:2px;background:#10232b;transform:rotate(45deg)}
+.age-field:hover .help,.age-field:focus-within .help{opacity:1;visibility:visible;transform:none}
 /* site:end */
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Πώς βγαίνει ο καθαρός μισθός το 2027, από τα μικτά ως τα καθαρά","description":"Από μικτά σε καθαρά βήμα-βήμα: εισφορές 13,37% και 12,87%, κλίμακα φόρου 2027, έκπτωση φόρου, παράδειγμα με 1.500 € και καθαρά ανά μισθό.","datePublished":"2026-10-24","dateModified":"2026-11-02","inLanguage":"el","mainEntityOfPage":"https://misthos2027.gr/articles/pos-ypologizetai-o-katharos-misthos.html","image":"https://misthos2027.gr/og-image.jpg","author":{"@type":"Organization","name":"misthos2027.gr","url":"https://misthos2027.gr/"},"publisher":{"@type":"Organization","@id":"https://misthos2027.gr/#org","name":"misthos2027.gr","url":"https://misthos2027.gr/","logo":{"@type":"ImageObject","url":"https://misthos2027.gr/favicon-512.png"}}}</script>
