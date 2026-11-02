@@ -10,20 +10,20 @@
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180.png">
 <link rel="icon" href="/favicon.ico">
-<meta name="theme-color" content="#7c3aed">
+<meta name="theme-color" content="#115e59">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <!-- Σελίδα σφάλματος: χωρίς διαφημίσεις (πολιτική AdSense για σελίδες χωρίς περιεχόμενο) -->
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{
-  font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  font-family:'Manrope',-apple-system,BlinkMacSystemFont,sans-serif;
   background:
-    radial-gradient(circle at 20% 0%,rgba(124,58,237,0.08) 0%,transparent 50%),
-    radial-gradient(circle at 80% 100%,rgba(236,72,153,0.08) 0%,transparent 50%),
+    radial-gradient(circle at 20% 0%,rgba(17,94,89,0.08) 0%,transparent 50%),
+    radial-gradient(circle at 80% 100%,rgba(8,145,178,0.08) 0%,transparent 50%),
     linear-gradient(180deg,#fafafa 0%,#f4f4f5 100%);
   min-height:100vh;color:#1e293b;
   display:flex;align-items:center;justify-content:center;padding:24px;
@@ -32,25 +32,25 @@ body{
   max-width:560px;width:100%;text-align:center;
   background:rgba(255,255,255,0.8);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
   border:1px solid rgba(255,255,255,0.8);border-radius:24px;padding:48px 36px;
-  box-shadow:0 10px 40px rgba(124,58,237,0.1);
+  box-shadow:0 10px 40px rgba(17,94,89,0.1);
 }
 .code{
   font-size:64px;font-weight:800;letter-spacing:-0.03em;line-height:1;margin-bottom:12px;
-  background:linear-gradient(135deg,#7c3aed 0%,#ec4899 100%);
+  background:linear-gradient(135deg,#115e59 0%,#0891b2 100%);
   -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
 }
 h1{font-size:24px;font-weight:800;letter-spacing:-0.01em;margin-bottom:10px}
 p{color:#64748b;font-size:16px;line-height:1.6;margin-bottom:26px}
 .btn{
-  display:inline-block;background:linear-gradient(135deg,#7c3aed 0%,#ec4899 100%);
+  display:inline-block;background:linear-gradient(135deg,#115e59 0%,#0891b2 100%);
   color:#fff;padding:14px 28px;border-radius:12px;
   font-weight:600;font-size:15px;text-decoration:none;
   transition:transform .2s;
 }
-.btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(124,58,237,0.25)}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(17,94,89,0.25)}
 ul{list-style:none;margin-top:26px;text-align:left;border-top:1px solid rgba(0,0,0,0.06);padding-top:18px}
 li{margin:8px 0}
-li a{color:#7c3aed;font-size:14.5px;text-decoration:none;font-weight:500}
+li a{color:#115e59;font-size:14.5px;text-decoration:none;font-weight:500}
 li a:hover{text-decoration:underline}
 @media(max-width:600px){.card{padding:36px 22px}}
 /* site:start — κοινοί κανόνες όλων των σελίδων (site-pass.js) */
@@ -78,6 +78,41 @@ li a:hover{text-decoration:underline}
 .guide-table th,.guide-table td{padding:8px 10px;border-bottom:1px solid rgba(15,23,42,.1);text-align:right;white-space:nowrap}
 .guide-table th:first-child,.guide-table td:first-child{text-align:left}
 .guide-table th{font-weight:700;background:rgba(15,23,42,.04);white-space:normal}
+/* Εμφάνιση του misthos2027 (02/11/2026, χρώματα και γραμματοσειρά στο theme.js): επίπεδο φόντο,
+   λευκές κάρτες με λεπτό περίγραμμα, σήμα «μ» με κεχριμπαρένια τελεία, μεγαλύτερο κείμενο στα άρθρα. */
+html body{background:#f3f6f5;font-family:'Manrope',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;color:#10232b;-webkit-font-smoothing:antialiased}
+button,input,select,textarea{font-family:inherit}
+body>header,.site-header{background:rgba(255,255,255,.97);backdrop-filter:none;-webkit-backdrop-filter:none;border-bottom:1px solid #e1e8e6}
+.topbar .logo,.site-header .logo-icon{position:relative;background:#0f766e;box-shadow:none;border-radius:10px;font-weight:800;line-height:1;color:#fff;padding-bottom:4px}
+.topbar .logo::after,.site-header .logo-icon::after{content:"";position:absolute;top:-3px;right:-3px;width:9px;height:9px;border-radius:50%;background:#f2a516;border:2px solid #fff}
+.brand-text strong,.site-header .logo-text{font-weight:800;letter-spacing:-.01em;color:#10232b}
+.brand-text span,.site-header .logo-text small{color:#5b6e72}
+body>header nav a:hover,.nav-links a:hover{background:#e6f2f0;color:#0f766e}
+.hero{text-align:left;padding-top:44px}
+h1.hero-title{font-weight:800;letter-spacing:-.03em;line-height:1.08;max-width:880px}
+h1.hero-title .grad{background:linear-gradient(transparent 66%,rgba(242,165,22,.34) 66%,rgba(242,165,22,.34) 94%,transparent 94%);-webkit-background-clip:border-box;background-clip:border-box;color:#0f766e;-webkit-text-fill-color:#0f766e}
+.hero-sub{margin:0;max-width:700px;font-size:17px;line-height:1.6;color:#4a5d63}
+.page-hero h1{background:none;-webkit-text-fill-color:currentColor;color:#10232b;letter-spacing:-.03em}
+.card,.content-card,.form-card,.info-card,article.article-card{background:#fff;backdrop-filter:none;-webkit-backdrop-filter:none;border:1px solid #e1e8e6;box-shadow:0 1px 2px rgba(16,35,43,.04),0 16px 36px -24px rgba(16,35,43,.22)}
+a.article-card{background:#fff;border:1px solid #e1e8e6;box-shadow:none}
+a.article-card:hover{border-color:#9fcfc7;box-shadow:0 12px 28px -20px rgba(16,35,43,.3)}
+.btn{background:#0f766e;box-shadow:0 8px 18px -10px rgba(15,118,110,.7)}
+.btn:hover{background:#115e59}
+.btn.secondary{background:#fff;box-shadow:none}
+.seg{background:#eef3f2}
+.seg button.on{background:#0f766e;box-shadow:none}
+.eyebrow{display:inline-block;padding:4px 12px;border-radius:999px;background:#e3f1ee;color:#115e59}
+.container>h1{color:#10232b;letter-spacing:-.025em}
+article.article-card p,article.article-card li{font-size:17px;line-height:1.75;color:#26383f}
+article.article-card h2{font-size:25px;font-weight:800;letter-spacing:-.015em;color:#10232b}
+article.article-card h3{font-weight:700;color:#10232b}
+article.article-card .tldr{background:#f0f8f6;border:1px solid #cfe7e2;border-left:4px solid #0f766e}
+article.article-card .tldr p{font-size:16px}
+article.article-card .table-wrap th{background:#115e59}
+.cta-block,.cta-box{background:#10232b}
+article.article-card .cta-block h3{color:#fff}
+article.article-card .cta-block p{color:rgba(255,255,255,.86)}
+:focus-visible{outline:3px solid rgba(13,148,136,.4);outline-offset:2px}
 /* site:end */
 </style>
 </head>

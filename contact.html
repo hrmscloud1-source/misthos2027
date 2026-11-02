@@ -33,37 +33,37 @@
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180.png">
 <link rel="icon" href="/favicon.ico">
-<meta name="theme-color" content="#7c3aed">
+<meta name="theme-color" content="#115e59">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{
-  font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  font-family:'Manrope',-apple-system,BlinkMacSystemFont,sans-serif;
   background:
-    radial-gradient(circle at 20% 0%,rgba(124,58,237,0.08) 0%,transparent 50%),
-    radial-gradient(circle at 80% 100%,rgba(236,72,153,0.08) 0%,transparent 50%),
+    radial-gradient(circle at 20% 0%,rgba(17,94,89,0.08) 0%,transparent 50%),
+    radial-gradient(circle at 80% 100%,rgba(8,145,178,0.08) 0%,transparent 50%),
     linear-gradient(180deg,#fafafa 0%,#f4f4f5 100%);
   min-height:100vh;color:#1e293b;line-height:1.7;
 }
 .site-header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.7);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,0.06)}
 .header-inner{max-width:1200px;margin:0 auto;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;gap:24px}
 .logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;font-weight:700;font-size:16px}
-.logo-icon{width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,#7c3aed 0%,#ec4899 100%);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:16px}
+.logo-icon{width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,#115e59 0%,#0891b2 100%);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:16px}
 .logo-text small{display:block;font-size:11px;font-weight:500;color:#64748b;margin-top:1px}
 .nav-links{display:flex;gap:4px;align-items:center;flex-wrap:wrap}
 .nav-links a{text-decoration:none;color:#475569;font-size:14px;font-weight:500;padding:8px 14px;border-radius:8px;transition:all .2s}
-.nav-links a:hover{background:rgba(124,58,237,0.08);color:#7c3aed}
+.nav-links a:hover{background:rgba(17,94,89,0.08);color:#115e59}
 @media(max-width:720px){.nav-links{display:none}}
 
 .container{max-width:1100px;margin:0 auto;padding:48px 24px 80px}
 .page-hero{margin-bottom:40px;text-align:center}
-.eyebrow{display:inline-block;font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#7c3aed;margin-bottom:12px}
-h1{font-size:clamp(34px,5.5vw,48px);font-weight:800;line-height:1.1;letter-spacing:-0.02em;background:linear-gradient(135deg,#7c3aed 0%,#ec4899 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:16px}
+.eyebrow{display:inline-block;font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#115e59;margin-bottom:12px}
+h1{font-size:clamp(34px,5.5vw,48px);font-weight:800;line-height:1.1;letter-spacing:-0.02em;background:linear-gradient(135deg,#115e59 0%,#0891b2 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:16px}
 .lead{font-size:17px;color:#475569;max-width:580px;margin:0 auto}
 
 .grid{display:grid;grid-template-columns:1fr 1.4fr;gap:28px;align-items:start}
@@ -74,7 +74,7 @@ h1{font-size:clamp(34px,5.5vw,48px);font-weight:800;line-height:1.1;letter-spaci
 .info-card h2{font-size:18px;margin-bottom:20px;color:#1e293b}
 .info-item{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid rgba(0,0,0,0.05)}
 .info-item:last-child{border-bottom:none}
-.info-icon{flex-shrink:0;width:38px;height:38px;background:linear-gradient(135deg,rgba(124,58,237,0.12),rgba(236,72,153,0.12));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px}
+.info-icon{flex-shrink:0;width:38px;height:38px;color:#0f766e;background:linear-gradient(135deg,rgba(17,94,89,0.12),rgba(8,145,178,0.12));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px}
 .info-text{flex:1}
 .info-text strong{display:block;font-size:14px;color:#1e293b;margin-bottom:2px}
 .info-text span{font-size:13.5px;color:#64748b;line-height:1.5}
@@ -84,7 +84,7 @@ h1{font-size:clamp(34px,5.5vw,48px);font-weight:800;line-height:1.1;letter-spaci
 
 .field{margin-bottom:18px}
 .field label{display:block;font-size:13px;font-weight:600;color:#475569;margin-bottom:6px;letter-spacing:0.01em}
-.field label .req{color:#ec4899;margin-left:2px}
+.field label .req{color:#0891b2;margin-left:2px}
 .field input,.field textarea,.field select{
   width:100%;padding:12px 14px;background:rgba(255,255,255,0.6);
   border:1.5px solid rgba(0,0,0,0.08);border-radius:10px;
@@ -92,7 +92,7 @@ h1{font-size:clamp(34px,5.5vw,48px);font-weight:800;line-height:1.1;letter-spaci
   transition:all .2s;outline:none;
 }
 .field input:focus,.field textarea:focus,.field select:focus{
-  border-color:#7c3aed;background:#fff;box-shadow:0 0 0 4px rgba(124,58,237,0.08);
+  border-color:#115e59;background:#fff;box-shadow:0 0 0 4px rgba(17,94,89,0.08);
 }
 .field textarea{min-height:140px;resize:vertical}
 .field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
@@ -102,27 +102,27 @@ h1{font-size:clamp(34px,5.5vw,48px);font-weight:800;line-height:1.1;letter-spaci
 .hp-field{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 
 .submit-btn{
-  width:100%;padding:14px;background:linear-gradient(135deg,#7c3aed 0%,#ec4899 100%);
+  width:100%;padding:14px;background:linear-gradient(135deg,#115e59 0%,#0891b2 100%);
   color:#fff;border:none;border-radius:12px;font-family:inherit;font-size:15px;font-weight:600;
   cursor:pointer;transition:all .2s;letter-spacing:0.01em;
 }
-.submit-btn:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(124,58,237,0.25)}
+.submit-btn:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(17,94,89,0.25)}
 .submit-btn:active{transform:translateY(0)}
 
 .consent{font-size:12.5px;color:#64748b;margin-top:14px;line-height:1.5}
-.consent a{color:#7c3aed;text-decoration:none;border-bottom:1px solid rgba(124,58,237,0.3)}
+.consent a{color:#115e59;text-decoration:none;border-bottom:1px solid rgba(17,94,89,0.3)}
 
 /* Success message */
-.success-card{display:none;text-align:center;padding:60px 32px;background:rgba(255,255,255,0.75);backdrop-filter:blur(20px);border-radius:20px;border:1px solid rgba(124,58,237,0.15)}
+.success-card{display:none;text-align:center;padding:60px 32px;background:rgba(255,255,255,0.75);backdrop-filter:blur(20px);border-radius:20px;border:1px solid rgba(17,94,89,0.15)}
 .success-card.show{display:block}
-.success-icon{width:64px;height:64px;background:linear-gradient(135deg,#7c3aed,#ec4899);border-radius:50%;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:28px}
+.success-icon{width:64px;height:64px;background:linear-gradient(135deg,#115e59,#0891b2);border-radius:50%;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:28px}
 .success-card h2{font-size:24px;color:#1e293b;margin-bottom:10px}
 .success-card p{color:#64748b;margin-bottom:24px}
 
 .site-footer{border-top:1px solid rgba(0,0,0,0.06);background:rgba(255,255,255,0.5);padding:32px 24px;text-align:center;color:#64748b;font-size:13px}
 .footer-links{margin-bottom:12px;display:flex;justify-content:center;gap:18px;flex-wrap:wrap}
 .footer-links a{color:#64748b;font-size:13px;text-decoration:none}
-.footer-links a:hover{color:#7c3aed}
+.footer-links a:hover{color:#115e59}
 /* site:start — κοινοί κανόνες όλων των σελίδων (site-pass.js) */
 .site-header a{border-bottom:none}
 @media(max-width:720px){
@@ -148,6 +148,41 @@ h1{font-size:clamp(34px,5.5vw,48px);font-weight:800;line-height:1.1;letter-spaci
 .guide-table th,.guide-table td{padding:8px 10px;border-bottom:1px solid rgba(15,23,42,.1);text-align:right;white-space:nowrap}
 .guide-table th:first-child,.guide-table td:first-child{text-align:left}
 .guide-table th{font-weight:700;background:rgba(15,23,42,.04);white-space:normal}
+/* Εμφάνιση του misthos2027 (02/11/2026, χρώματα και γραμματοσειρά στο theme.js): επίπεδο φόντο,
+   λευκές κάρτες με λεπτό περίγραμμα, σήμα «μ» με κεχριμπαρένια τελεία, μεγαλύτερο κείμενο στα άρθρα. */
+html body{background:#f3f6f5;font-family:'Manrope',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;color:#10232b;-webkit-font-smoothing:antialiased}
+button,input,select,textarea{font-family:inherit}
+body>header,.site-header{background:rgba(255,255,255,.97);backdrop-filter:none;-webkit-backdrop-filter:none;border-bottom:1px solid #e1e8e6}
+.topbar .logo,.site-header .logo-icon{position:relative;background:#0f766e;box-shadow:none;border-radius:10px;font-weight:800;line-height:1;color:#fff;padding-bottom:4px}
+.topbar .logo::after,.site-header .logo-icon::after{content:"";position:absolute;top:-3px;right:-3px;width:9px;height:9px;border-radius:50%;background:#f2a516;border:2px solid #fff}
+.brand-text strong,.site-header .logo-text{font-weight:800;letter-spacing:-.01em;color:#10232b}
+.brand-text span,.site-header .logo-text small{color:#5b6e72}
+body>header nav a:hover,.nav-links a:hover{background:#e6f2f0;color:#0f766e}
+.hero{text-align:left;padding-top:44px}
+h1.hero-title{font-weight:800;letter-spacing:-.03em;line-height:1.08;max-width:880px}
+h1.hero-title .grad{background:linear-gradient(transparent 66%,rgba(242,165,22,.34) 66%,rgba(242,165,22,.34) 94%,transparent 94%);-webkit-background-clip:border-box;background-clip:border-box;color:#0f766e;-webkit-text-fill-color:#0f766e}
+.hero-sub{margin:0;max-width:700px;font-size:17px;line-height:1.6;color:#4a5d63}
+.page-hero h1{background:none;-webkit-text-fill-color:currentColor;color:#10232b;letter-spacing:-.03em}
+.card,.content-card,.form-card,.info-card,article.article-card{background:#fff;backdrop-filter:none;-webkit-backdrop-filter:none;border:1px solid #e1e8e6;box-shadow:0 1px 2px rgba(16,35,43,.04),0 16px 36px -24px rgba(16,35,43,.22)}
+a.article-card{background:#fff;border:1px solid #e1e8e6;box-shadow:none}
+a.article-card:hover{border-color:#9fcfc7;box-shadow:0 12px 28px -20px rgba(16,35,43,.3)}
+.btn{background:#0f766e;box-shadow:0 8px 18px -10px rgba(15,118,110,.7)}
+.btn:hover{background:#115e59}
+.btn.secondary{background:#fff;box-shadow:none}
+.seg{background:#eef3f2}
+.seg button.on{background:#0f766e;box-shadow:none}
+.eyebrow{display:inline-block;padding:4px 12px;border-radius:999px;background:#e3f1ee;color:#115e59}
+.container>h1{color:#10232b;letter-spacing:-.025em}
+article.article-card p,article.article-card li{font-size:17px;line-height:1.75;color:#26383f}
+article.article-card h2{font-size:25px;font-weight:800;letter-spacing:-.015em;color:#10232b}
+article.article-card h3{font-weight:700;color:#10232b}
+article.article-card .tldr{background:#f0f8f6;border:1px solid #cfe7e2;border-left:4px solid #0f766e}
+article.article-card .tldr p{font-size:16px}
+article.article-card .table-wrap th{background:#115e59}
+.cta-block,.cta-box{background:#10232b}
+article.article-card .cta-block h3{color:#fff}
+article.article-card .cta-block p{color:rgba(255,255,255,.86)}
+:focus-visible{outline:3px solid rgba(13,148,136,.4);outline-offset:2px}
 /* site:end */
 </style>
 </head>
@@ -156,8 +191,8 @@ h1{font-size:clamp(34px,5.5vw,48px);font-weight:800;line-height:1.1;letter-spaci
 <header class="site-header">
   <div class="header-inner">
     <a href="/" class="logo">
-      <span class="logo-icon">€</span>
-      <span class="logo-text">misthos2027.gr<small>Καθαρός μισθός · ΕΦΚΑ · Φόρος</small></span>
+      <span class="logo-icon">μ</span>
+      <span class="logo-text">misthos2027.gr<small>Υπολογιστές μισθού με πηγές</small></span>
     </a>
     <nav class="nav-links">
       <a href="/">Υπολογιστής</a>
@@ -186,7 +221,7 @@ h1{font-size:clamp(34px,5.5vw,48px);font-weight:800;line-height:1.1;letter-spaci
       <h2>Για να σου απαντήσουμε γρήγορα</h2>
 
       <div class="info-item">
-        <div class="info-icon">🧮</div>
+        <div class="info-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><line x1="8.5" y1="7" x2="15.5" y2="7"/><line x1="8.5" y1="12" x2="9.5" y2="12"/><line x1="14.5" y1="12" x2="15.5" y2="12"/><line x1="8.5" y1="16.5" x2="9.5" y2="16.5"/><line x1="14.5" y1="16.5" x2="15.5" y2="16.5"/></svg></div>
         <div class="info-text">
           <strong>Αν αφορά υπολογισμό</strong>
           <span>Γράψε το εργαλείο, τον μικτό, το έτος, τα παιδιά, την ηλικία και το ποσό που περίμενες. Αν το έχεις, πες μας τι γράφει το εκκαθαριστικό, χωρίς ονόματα και ΑΜΚΑ.</span>
@@ -194,7 +229,7 @@ h1{font-size:clamp(34px,5.5vw,48px);font-weight:800;line-height:1.1;letter-spaci
       </div>
 
       <div class="info-item">
-        <div class="info-icon">📄</div>
+        <div class="info-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2.5H7a2 2 0 0 0-2 2v15a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7.5z"/><polyline points="14 2.5 14 7.5 19 7.5"/><line x1="8.5" y1="13" x2="15.5" y2="13"/><line x1="8.5" y1="17" x2="13" y2="17"/></svg></div>
         <div class="info-text">
           <strong>Αν αφορά άρθρο</strong>
           <span>Στείλε τη διεύθυνση της σελίδας και, αν ξέρεις, την εγκύκλιο ή τον νόμο που λέει κάτι διαφορετικό.</span>
@@ -202,15 +237,15 @@ h1{font-size:clamp(34px,5.5vw,48px);font-weight:800;line-height:1.1;letter-spaci
       </div>
 
       <div class="info-item">
-        <div class="info-icon">⏱️</div>
+        <div class="info-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13" r="8"/><polyline points="12 9 12 13 14.5 15"/><line x1="10" y1="2.5" x2="14" y2="2.5"/></svg></div>
         <div class="info-text">
           <strong>Πότε απαντάμε</strong>
-          <span>Συνήθως σε 1–2 εργάσιμες. Οι διορθώσεις καταγράφονται στο <a href="/methodos.html" style="color:#7c3aed;border-bottom:1px solid rgba(124,58,237,0.3);text-decoration:none">ιστορικό αλλαγών</a>.</span>
+          <span>Συνήθως σε 1–2 εργάσιμες. Οι διορθώσεις καταγράφονται στο <a href="/methodos.html" style="color:#115e59;border-bottom:1px solid rgba(17,94,89,0.3);text-decoration:none">ιστορικό αλλαγών</a>.</span>
         </div>
       </div>
 
       <div class="info-item">
-        <div class="info-icon">⚖️</div>
+        <div class="info-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="3" x2="12" y2="21"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="5" y1="7" x2="19" y2="7"/><path d="M5 7l-2.5 6a2.5 2.5 0 0 0 5 0z"/><path d="M19 7l-2.5 6a2.5 2.5 0 0 0 5 0z"/></svg></div>
         <div class="info-text">
           <strong>Τι δεν μπορούμε να κάνουμε</strong>
           <span>Δεν δίνουμε νομική ή λογιστική συμβουλή για συγκεκριμένη υπόθεση. Για διαφορά με τον εργοδότη υπάρχει η Επιθεώρηση Εργασίας, στο 1555.</span>
@@ -218,10 +253,10 @@ h1{font-size:clamp(34px,5.5vw,48px);font-weight:800;line-height:1.1;letter-spaci
       </div>
 
       <div class="info-item">
-        <div class="info-icon">🔒</div>
+        <div class="info-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8.5 11V7.5a3.5 3.5 0 0 1 7 0V11"/></svg></div>
         <div class="info-text">
           <strong>Το μήνυμά σου</strong>
-          <span>Το χρησιμοποιούμε μόνο για να σου απαντήσουμε, όπως εξηγεί η <a href="/privacy-policy.html" style="color:#7c3aed;border-bottom:1px solid rgba(124,58,237,0.3);text-decoration:none">πολιτική απορρήτου</a>.</span>
+          <span>Το χρησιμοποιούμε μόνο για να σου απαντήσουμε, όπως εξηγεί η <a href="/privacy-policy.html" style="color:#115e59;border-bottom:1px solid rgba(17,94,89,0.3);text-decoration:none">πολιτική απορρήτου</a>.</span>
         </div>
       </div>
     </aside>
@@ -286,7 +321,7 @@ h1{font-size:clamp(34px,5.5vw,48px);font-weight:800;line-height:1.1;letter-spaci
         <div class="success-icon">✓</div>
         <h2>Το λάβαμε</h2>
         <p>Το μήνυμά σου έφτασε. Θα σου απαντήσουμε στο email που μας έδωσες.</p>
-        <a href="/" style="display:inline-block;color:#7c3aed;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(124,58,237,0.3)">← Επιστροφή στην αρχική</a>
+        <a href="/" style="display:inline-block;color:#115e59;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(17,94,89,0.3)">← Επιστροφή στην αρχική</a>
       </div>
 
     </section>
