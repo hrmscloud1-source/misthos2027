@@ -40,7 +40,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Ezoic Privacy Scripts: διαχείριση συγκατάθεσης cookies (CMP), όπως σε όλες τις σελίδες -->
   <script data-cfasync="false" src="https://cmp.gatekeeperconsent.com/min.js"></script>
@@ -83,7 +83,7 @@
 
     body{
       color:var(--ink);
-      font-family:'Manrope', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      font-family:'Geologica', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
       -webkit-font-smoothing:antialiased;
       min-height:100vh;
       background:
@@ -1629,13 +1629,16 @@
 .guide-table th,.guide-table td{padding:8px 10px;border-bottom:1px solid rgba(15,23,42,.1);text-align:right;white-space:nowrap}
 .guide-table th:first-child,.guide-table td:first-child{text-align:left}
 .guide-table th{font-weight:700;background:rgba(15,23,42,.04);white-space:normal}
-/* Εμφάνιση του misthos2027 (02/11/2026, χρώματα και γραμματοσειρά στο theme.js): επίπεδο φόντο,
-   λευκές κάρτες με λεπτό περίγραμμα, σήμα «μ» με κεχριμπαρένια τελεία, μεγαλύτερο κείμενο στα άρθρα. */
-html body{background:#f3f6f5;font-family:'Manrope',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;color:#10232b;-webkit-font-smoothing:antialiased}
+/* Εμφάνιση του misthos2027 (02/11/2026, χρώματα, γραμματοσειρά και σήμα στο theme.js): φόντο με
+   λάμψη και πλέγμα που σβήνει προς τα κάτω, γυάλινη κεφαλίδα, λευκές κάρτες με λεπτό περίγραμμα,
+   σήμα € (SVG), μεγαλύτερο κείμενο στα άρθρα. */
+html{background:#f6f9f8}
+html body{background:transparent;font-family:'Geologica',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;color:#10232b;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:absolute;top:0;left:0;right:0;height:920px;z-index:-1;pointer-events:none;background:radial-gradient(40% 44% at 12% 10%,rgba(20,184,166,.26),transparent 70%),radial-gradient(34% 40% at 88% 4%,rgba(8,145,178,.2),transparent 70%),radial-gradient(28% 32% at 62% 30%,rgba(242,165,22,.15),transparent 70%),linear-gradient(rgba(16,35,43,.05) 1px,transparent 1px) 0 0/44px 44px,linear-gradient(90deg,rgba(16,35,43,.05) 1px,transparent 1px) 0 0/44px 44px;-webkit-mask-image:linear-gradient(#000 30%,transparent);mask-image:linear-gradient(#000 30%,transparent)}
 button,input,select,textarea{font-family:inherit}
-body>header,.site-header{background:rgba(255,255,255,.97);backdrop-filter:none;-webkit-backdrop-filter:none;border-bottom:1px solid #e1e8e6}
-.topbar .logo,.site-header .logo-icon{position:relative;background:#0f766e;box-shadow:none;border-radius:10px;font-weight:800;line-height:1;color:#fff;padding-bottom:4px}
-.topbar .logo::after,.site-header .logo-icon::after{content:"";position:absolute;top:-3px;right:-3px;width:9px;height:9px;border-radius:50%;background:#f2a516;border:2px solid #fff}
+body>header,.site-header{background:rgba(255,255,255,.72);backdrop-filter:saturate(170%) blur(14px);-webkit-backdrop-filter:saturate(170%) blur(14px);border-bottom:1px solid rgba(16,35,43,.08)}
+.topbar .logo,.site-header .logo-icon{position:relative;padding:0;background:linear-gradient(150deg,#14b8a6 -30%,#0f766e 45%,#115e59 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 6px 14px -8px rgba(15,118,110,.8);border-radius:10px;line-height:1}
+.topbar .logo svg,.site-header .logo-icon svg{display:block;width:100%;height:100%}
 .brand-text strong,.site-header .logo-text{font-weight:800;letter-spacing:-.01em;color:#10232b}
 .brand-text span,.site-header .logo-text small{color:#5b6e72}
 body>header nav a:hover,.nav-links a:hover{background:#e6f2f0;color:#0f766e}
@@ -1652,7 +1655,7 @@ a.article-card:hover{border-color:#9fcfc7;box-shadow:0 12px 28px -20px rgba(16,3
 .btn.secondary{background:#fff;box-shadow:none}
 .seg{background:#eef3f2}
 .seg button.on{background:#0f766e;box-shadow:none}
-.eyebrow{display:inline-block;padding:4px 12px;border-radius:999px;background:#e3f1ee;color:#115e59}
+.eyebrow{display:inline-block;padding:4px 12px;border-radius:999px;background:rgba(255,255,255,.75);border:1px solid #cfe5e0;color:#115e59}
 .container>h1{color:#10232b;letter-spacing:-.025em}
 article.article-card p,article.article-card li{font-size:17px;line-height:1.75;color:#26383f}
 article.article-card h2{font-size:25px;font-weight:800;letter-spacing:-.015em;color:#10232b}
@@ -1672,7 +1675,7 @@ article.article-card .cta-block p{color:rgba(255,255,255,.86)}
   <header>
     <div class="topbar">
       <a href="/" class="brand">
-        <span class="logo">μ</span>
+        <span class="logo"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M24.7 9.7A8.5 8.5 0 1 0 24.7 22.3" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"/><path d="M7.5 13.8H19M7.5 18.2H17.5" stroke="#f2a516" stroke-width="2.6" stroke-linecap="round"/></svg></span>
         <span class="brand-text">
           <strong>misthos2027.gr</strong>
           <span>Υπολογιστές μισθού με πηγές</span>
